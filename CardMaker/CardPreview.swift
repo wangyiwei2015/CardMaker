@@ -10,6 +10,7 @@ import SwiftUI
 struct CardPreview: View {
     
     @Binding var dateSelection: Int
+    @Binding var cardDataList: [Int]
     @State var previewImg: UIImage? = nil
     @State var mainSide: Bool = true
     @State var mainSideRotation: Bool = true
@@ -27,6 +28,9 @@ struct CardPreview: View {
     var body: some View {
         ZStack {
             Color.black.opacity(0.5).ignoresSafeArea().onTapGesture {
+                if previewImg != nil && cardDataList.firstIndex(of: dateSelection) == nil {
+                    cardDataList.append(dateSelection)
+                }
                 dateSelection = 0
             }
             .opacity(isPresented ? 1 : 0)
@@ -84,12 +88,15 @@ struct CardPreview: View {
                 
                 HStack {
                     Button {
+                        if previewImg != nil && cardDataList.firstIndex(of: dateSelection) == nil {
+                            cardDataList.append(dateSelection)
+                        }
                         dateSelection = 0
                     } label: {Image(systemName: "xmark")
                     }.buttonStyle(PreviewOpButtonStyle(bgColor: .secondary))
                     Spacer()
                     Button {
-                        //
+                        UIImageWriteToSavedPhotosAlbum(previewImg!, nil, nil, nil)
                     } label: {Image(systemName: "square.and.arrow.down")
                     }.buttonStyle(PreviewOpButtonStyle(bgColor: Color.selection))
                         .opacity(artIsEmpty ? 0 : 1)
@@ -106,14 +113,14 @@ struct CardPreview: View {
             }.padding(40)
         }
         .fullScreenCover(isPresented: $openEditor, onDismiss: {}) {
-            EditorView(dateInt: dateSelection)
+            EditorView(dateInt: dateSelection, previewImg: $previewImg)
         }
     }
 }
 
 struct CardPreview_Previews: PreviewProvider {
     static var previews: some View {
-        CardPreview(dateSelection: .constant(20220621), previewImg: UIImage())
+        CardPreview(dateSelection: .constant(20220621), cardDataList: .constant([20220621]), previewImg: UIImage())
     }
 }
 

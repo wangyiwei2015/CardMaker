@@ -11,10 +11,7 @@ struct ContentView: View {
     
     @State var showsPrefs: Bool = false
     @State var dateSelection = 0
-    @State var cardDataList: [Int] = {
-        let files = try! FileManager.default.contentsOfDirectory(atPath: dataDir)
-        return files.map({Int($0) ?? 0}).filter({$0 > 20000000})
-    }()
+    @State var cardDataList: [Int] = CardData.shared.allDates
     
     @State var year: Int = Calendar.current.dateComponents([.year], from: Date()).year!
     @State var month: Int = Calendar.current.dateComponents([.month], from: Date()).month!
@@ -41,7 +38,9 @@ struct ContentView: View {
                 )
                 Spacer()
             }
-            CardPreview(dateSelection: $dateSelection)
+            CardPreview(
+                dateSelection: $dateSelection, cardDataList: $cardDataList,
+                previewImg: CardData.shared.loadPreviews(dateSelection).first)
         }
     }
     

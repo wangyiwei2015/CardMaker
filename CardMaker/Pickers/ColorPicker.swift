@@ -52,3 +52,12 @@ struct ColorPicker_Previews: PreviewProvider {
         ColorPicker(color: .constant(.red))
     }
 }
+
+func idOfColor(_ color: Color) -> Int {
+    let colors: [[Color]] = [
+        [.selection, Color("SelectionSecondary"), .white, Color(UIColor.systemGray5), Color(UIColor.systemGray3), Color(UIColor.systemGray2), .gray, .black],
+        [.red, .orange, .yellow, .green, .cyan, .blue, .purple, .brown],
+    ]
+    if let index = colors[0].firstIndex(of: color) {return index}
+    else {return (colors[1].firstIndex(of: color) ?? -colors[0].count) + colors[0].count}
+}

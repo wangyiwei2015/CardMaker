@@ -11,6 +11,7 @@ struct EditorView: View {
     
     let dateInt: Int
     
+    @Binding var previewImg: UIImage?
     @Environment(\.presentationMode) var mode
     @State var showsExitAlert: Bool = false
     
@@ -98,8 +99,17 @@ struct EditorView: View {
             }
             Spacer()
             Button {
-                let output = fullSizeCard.snapshot() // FIXME: not self
-                UIImageWriteToSavedPhotosAlbum(output, nil, nil, nil)
+                let output = fullSizeCard.snapshot()
+                //UIImageWriteToSavedPhotosAlbum(output, nil, nil, nil)
+                let design = CardDesign(
+                    date: dateInt, title: titleContent, titleFontId: 0,
+                    titleColorId: idOfColor(c_title), bgColorId: idOfColor(bgColor),
+                    imgStyle: p_img_pos, dateStyle: show_month, dateOpacityId: o_date,
+                    dateColorId: idOfColor(c_date), datePosition: p_date,
+                    showYear: show_year_label, yearBottom: p_year_label == 0)
+                CardData.shared.saveData(design, designDate: dateInt, output: output)
+                previewImg = output
+                mode.wrappedValue.dismiss()
             } label: {Text("Save").foregroundColor(.secondary)
             }
         }
@@ -203,7 +213,7 @@ struct EditorView: View {
     
     @ViewBuilder var imageEditor: some View {
         Text("Image content").bold().foregroundColor(.gray)
-        ImagePicker(image: $artworkImg)
+        ImagePicker(image: $artworkImg, designDate: dateInt, cardDate: dateInt)
         Divider().padding()
         Text("Image style").bold().foregroundColor(.gray)
         HStack {
@@ -313,6 +323,6 @@ struct EditorView: View {
 
 struct EditorView_Previews: PreviewProvider {
     static var previews: some View {
-        EditorView(dateInt: 20220621, editing: .image)
+        EditorView(dateInt: 20220621, previewImg: .constant(nil), editing: .image)
     }
 }

@@ -17,7 +17,7 @@ struct FiveStarRater: View {
                 Button {starCount = star
                 } label: {
                     Image(systemName: starCount >= star ? "star.fill" : "star")
-                        .font(.system(size: 36, weight: .semibold))
+                        .font(.system(size: 36, weight: .regular))
                         .foregroundColor(.orange)
                 }.buttonStyle(StarBtnStyle())
             }
