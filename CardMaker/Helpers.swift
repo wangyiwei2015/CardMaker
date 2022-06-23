@@ -40,3 +40,5 @@ extension View {
         }
     }
 }
+
+let dataDir = "\(NSHomeDirectory())/Documents/"

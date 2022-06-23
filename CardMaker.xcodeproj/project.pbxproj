@@ -25,6 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4D411EC62864077600774634 /* todo.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = todo.md; sourceTree = "<group>"; };
 		4DB7347E286075B40098216B /* CardMaker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CardMaker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DB73481286075B40098216B /* CardMakerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardMakerApp.swift; sourceTree = "<group>"; };
 		4DB73483286075B40098216B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -75,6 +76,7 @@
 		4DB73480286075B40098216B /* CardMaker */ = {
 			isa = PBXGroup;
 			children = (
+				4D411EC62864077600774634 /* todo.md */,
 				4DB7348F286076190098216B /* Info.plist */,
 				4DB73481286075B40098216B /* CardMakerApp.swift */,
 				4DB73485286075B50098216B /* Assets.xcassets */,
@@ -326,6 +328,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CardMaker/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = CardMaker;
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "To save your artworks";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "To load and save your artworks";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -359,6 +362,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CardMaker/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = CardMaker;
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "To save your artworks";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "To load and save your artworks";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

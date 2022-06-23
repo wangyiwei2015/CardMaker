@@ -11,16 +11,18 @@ struct CalendarView<DateView>: View where DateView: View {
     @Environment(\.calendar) var calendar
     
     @Binding var selection: Int
-
+    
     let interval: DateInterval
     let showHeaders: Bool
-    let content: (Date) -> DateView
+    let content: (Date, Bool) -> DateView
+    
+    let columns = Array(repeating: GridItem(spacing: 2), count: 7)
 
     init(
         interval: DateInterval,
         showHeaders: Bool = true,
         selection: Binding<Int>,
-        @ViewBuilder content: @escaping (Date) -> DateView
+        @ViewBuilder content: @escaping (Date, Bool) -> DateView
     ) {
         self.interval = interval
         self.showHeaders = showHeaders
@@ -29,21 +31,28 @@ struct CalendarView<DateView>: View where DateView: View {
     }
 
     var body: some View {
-        LazyVGrid(columns: Array(repeating: GridItem(spacing: 2), count: 7)) {
-            ForEach(months, id: \.self) { month in
-                Section(header: header(for: month)) {
-                    ForEach(days(for: month), id: \.self) { date in
-                        if calendar.isDate(date, equalTo: month, toGranularity: .month) {
-                            Button {
-                                selection = Int(DateFormatter.yyyyddmm.string(from: date))!
-                            } label: {
-                                content(date)
-                            }.buttonStyle(CalendarCellButtonStyle()).id(date)
-                        } else {
-                            content(date).hidden()
-                        }
-                    }
-                }.padding(.bottom)
+        LazyVGrid(columns: columns) {sections}.padding(.bottom, 100)
+    }
+    
+    @ViewBuilder func makeButton(_ month: Date, _ date: Date) -> some View {
+        if calendar.isDate(date, equalTo: month, toGranularity: .month) {
+            Button {
+                selection = Int(DateFormatter.yyyyddmm.string(from: date))!
+            } label: {
+                content(date, calendar.isDate(date, equalTo: Date(), toGranularity: .day))
+            }.buttonStyle(CalendarCellButtonStyle()).id(date)
+        } else {
+            content(date, false).hidden()
+        }
+    }
+    
+    @ViewBuilder var sections: some View {
+        ForEach(months, id: \.self) { month in
+            Section(header: header(for: month)) {
+                ForEach(days(for: month), id: \.self) { date in
+                    makeButton(month, date)
+                }
+                Spacer(minLength: 20)
             }
         }
     }
@@ -66,6 +75,7 @@ struct CalendarView<DateView>: View where DateView: View {
                     HStack {
                         Text(formatter.string(from: month))
                             .font(.title).bold()
+                            .foregroundColor(.gray)
                             .padding()
                         Spacer()
                     }
@@ -90,20 +100,32 @@ struct CalendarView<DateView>: View where DateView: View {
 struct CardCalendarView: View {
     
     @Binding var selection: Int
+    @Binding var cardDataList: [Int]
+    @Binding var year: Int
+    @Binding var month: Int
+    
+    func hasCard(_ date: Date) -> Bool {
+        cardDataList.firstIndex(of: Int(DateFormatter.yyyyddmm.string(from: date))!) != nil
+    }
     
     var body: some View {
         //NavigationView {
             VStack {
                 ScrollView(.vertical) {
                     CalendarView(
-                        interval: Calendar.current.dateInterval(of: .year, for: Date())!,
+                        interval: .init(
+                            start: Calendar.current.date(from: DateComponents(year: year, month: month))!,
+                            end: Calendar.current.date(from: DateComponents(year: year, month: month))!
+                        ),
+                        //interval: .init(),//Calendar.current.dateInterval(of: .year, for: Date())!,
                         selection: $selection
-                    ) { date in
+                    ) { date, isToday in
                         Text(DateFormatter.day.string(from: date))
                             .font(.system(size: 24, weight: .regular, design: .monospaced))
-                            .foregroundColor(.white)
+                            .foregroundColor(.primary)
                             .padding(8)
-                            .background(Circle().fill(Color.selection))
+                            .background(Circle().fill(hasCard(date) ? Color("SelectionSecondary") : Color.clear))
+                            .overlay {Circle().stroke(isToday ? Color.selection : Color.clear, lineWidth: 4)}
                     }.padding(.horizontal)
                 }
             //}.navigationTitle("Title?")
@@ -113,7 +135,12 @@ struct CardCalendarView: View {
 
 struct CalendarView_Previews: PreviewProvider {
     static var previews: some View {
-        CardCalendarView(selection: .constant(20220621))
+        CardCalendarView(
+            selection: .constant(20220621),
+            cardDataList: .constant([20220618,20220620]),
+            year: .constant(2022),
+            month: .constant(6)
+        )
         //.frame(height: 300)
         //.background(Color(UIColor.systemBackground).shadow(radius: 10))
     }
