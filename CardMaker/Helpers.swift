@@ -25,21 +25,51 @@ import SwiftUI
 //}
 
 extension View {
-    func snapshot(_ _controller: UIViewController? = nil) -> UIImage {
-        let controller = _controller ?? UIHostingController(rootView: self)
-        let view = controller.view
+//    func snapshot(_ _controller: UIViewController? = nil) -> UIImage {
+//        let controller = _controller ?? UIHostingController(rootView: self)
+//        let view = controller.view
+//
+//        let targetSize = controller.view.intrinsicContentSize
+//        view?.bounds = CGRect(origin: .zero, size: targetSize)
+//        view?.backgroundColor = .clear
+//
+//        let renderer = UIGraphicsImageRenderer(size: targetSize)
+//        return renderer.image { _ in
+//            view?.drawHierarchy(in: controller.view.bounds, afterScreenUpdates: true)
+//        }
+//    }
+    func snapshot() -> UIImage {
+        let hosting = UIHostingController(rootView: self)
+        let window = UIWindow(frame: CGRect(origin: .zero, size: hosting.view.intrinsicContentSize))
+        hosting.view.frame = window.frame
+        window.addSubview(hosting.view)
+        window.makeKeyAndVisible()
+        return hosting.view.renderedImage
+    }
+}
 
-        let targetSize = controller.view.intrinsicContentSize
-        view?.bounds = CGRect(origin: .zero, size: targetSize)
-        view?.backgroundColor = .clear
+extension UIView {
+    var renderedImage: UIImage {
+        UIGraphicsBeginImageContextWithOptions(bounds.size, false, 0.0)
+        let context = UIGraphicsGetCurrentContext()!
+        layer.render(in: context)
+        let image = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        return image
+    }
+}
 
-        let renderer = UIGraphicsImageRenderer(size: targetSize)
-
-        return renderer.image { _ in
-            view?.drawHierarchy(in: controller.view.bounds, afterScreenUpdates: true)
+/* iOS 16+
+ func generateSnapshot() {
+    Task {
+        let renderer = await ImageRenderer(
+            content: ())
+        if let image = await renderer.uiImage {
+            self.snapshot = image
         }
     }
 }
+*/
 
 struct CardDesign {
     var date: Int
@@ -50,7 +80,7 @@ struct CardDesign {
     
     var bgColorId: Int
     
-    var moodId: Int = 0
+    var mood: String
     var feelSelf: Int = 0
     var feelWorld: Int = 0
     
@@ -63,6 +93,8 @@ struct CardDesign {
     
     var showYear: Bool
     var yearBottom: Bool
+    
+    static let empty = CardDesign(date: 0, title: "Tap to edit", titleFontId: 0, titleColorId: 6, bgColorId: 2, mood: "🫥", imgStyle: 0, dateStyle: 0, dateOpacityId: 2, dateColorId: 2, datePosition: 0, showYear: false, yearBottom: true)
 }
 
 class CardData: NSObject {
@@ -81,12 +113,13 @@ class CardData: NSObject {
         try? FileManager.default.createDirectory(atPath: "\(dataDir)\(designDate)/", withIntermediateDirectories: true)
         let configFile = "\(dataDir)\(designDate)/\(work.date)_cfg"
         let imgFile = "\(dataDir)\(designDate)/\(work.date).jpg"
-        try! output.jpegData(compressionQuality: 1)?.write(to: URL(fileURLWithPath: imgFile))
+        try? FileManager.default.removeItem(atPath: imgFile)
+        _ = FileManager.default.createFile(atPath: imgFile, contents: output.jpegData(compressionQuality: 1)!)
         var cfgText = work.title
         cfgText.append("\ntitleFontId=\(work.titleFontId)")
         cfgText.append("\ntitleColorId=\(work.titleColorId)")
         cfgText.append("\nbgColorId=\(work.bgColorId)")
-        cfgText.append("\nmoodId=\(work.moodId)")
+        cfgText.append("\nmood=\(work.mood)")
         cfgText.append("\nfeelSelf=\(work.feelSelf)")
         cfgText.append("\nfeelWorld=\(work.feelWorld)")
         cfgText.append("\nimgStyle=\(work.imgStyle)")
@@ -113,6 +146,9 @@ class CardData: NSObject {
                 titleFontId: Int(cfgDict["titleFontId"] ?? "0") ?? 0,
                 titleColorId: Int(cfgDict["titleColorId"] ?? "6") ?? 6,
                 bgColorId: Int(cfgDict["bgColorId"] ?? "2") ?? 2,
+                mood: cfgDict["mood"] ?? "🫥",
+                feelSelf: Int(cfgDict["feelSelf"] ?? "0") ?? 0,
+                feelWorld: Int(cfgDict["feelWorld"] ?? "0") ?? 0,
                 imgStyle: Int(cfgDict["imgStyle"] ?? "0") ?? 0,
                 dateStyle: Int(cfgDict["dateStyle"] ?? "0") ?? 0,
                 dateOpacityId: Int(cfgDict["dateOpacityId"] ?? "2") ?? 2,

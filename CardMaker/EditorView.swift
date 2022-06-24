@@ -71,7 +71,7 @@ struct EditorView: View {
                 ZStack {
                     Color.background
                     Text("No editor").foregroundColor(.secondary)
-                }.frame(height: 200)
+                }.frame(height: editing == .none ? 80 : 200)
             }.ignoresSafeArea(.keyboard)
             VStack {
                 Spacer()
@@ -81,7 +81,9 @@ struct EditorView: View {
             }
         }
         .confirmationDialog("Exit without saving?", isPresented: $showsExitAlert) {
-            Button("Discard changes and exit") {mode.wrappedValue.dismiss()}
+            Button("Discard changes and exit", role: .destructive) {
+                mode.wrappedValue.dismiss()
+            }
         } message: {
             Text("Exit without saving?")
         }
@@ -95,7 +97,7 @@ struct EditorView: View {
             Spacer()
             Button {
                 //
-            } label: {Text("Presets").foregroundColor(.selection)
+            } label: {Text("Presets").foregroundColor(.secondary)//.selection)
             }
             Spacer()
             Button {
@@ -104,6 +106,7 @@ struct EditorView: View {
                 let design = CardDesign(
                     date: dateInt, title: titleContent, titleFontId: 0,
                     titleColorId: idOfColor(c_title), bgColorId: idOfColor(bgColor),
+                    mood: mood, feelSelf: feelSelf, feelWorld: feelWorld,
                     imgStyle: p_img_pos, dateStyle: show_month, dateOpacityId: o_date,
                     dateColorId: idOfColor(c_date), datePosition: p_date,
                     showYear: show_year_label, yearBottom: p_year_label == 0)
@@ -133,7 +136,7 @@ struct EditorView: View {
     }
     
     @ViewBuilder var titleText: some View {
-        Text(titleContent)
+        Text(titleContent.replacingOccurrences(of: "\\n", with: "\n"))
             .font(.system(size: 30, weight: .bold, design: .rounded))
             .foregroundColor(c_title)
             .padding(.horizontal, padding_title[p_img_pos])
@@ -172,6 +175,7 @@ struct EditorView: View {
         }
         .aspectRatio(2 / 3, contentMode: .fit)
         .background(Color.background.shadow(radius: 5, y: 3))
+        .animation(.easeOut(duration: 0.1), value: editing)
     }
     
     @ViewBuilder var propertyEditorTopBar: some View {

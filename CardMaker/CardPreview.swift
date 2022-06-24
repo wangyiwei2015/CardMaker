@@ -11,11 +11,16 @@ struct CardPreview: View {
     
     @Binding var dateSelection: Int
     @Binding var cardDataList: [Int]
-    @State var previewImg: UIImage? = nil
+    @Binding var previewImg: UIImage?
+    @Binding var artworkDesign: CardDesign?
     @State var mainSide: Bool = true
     @State var mainSideRotation: Bool = true
     
     @State var openEditor: Bool = false
+    @State var delAlert: Bool = false
+    @State var imgSaved: Bool = false
+    
+    let haptic = UIImpactFeedbackGenerator(style: .light)
     
     var artIsEmpty: Bool {
         previewImg == nil
@@ -25,13 +30,18 @@ struct CardPreview: View {
         dateSelection > 0
     }
     
+    func quitAction() {
+        if previewImg != nil && cardDataList.firstIndex(of: dateSelection) == nil {
+            cardDataList.append(dateSelection)
+        }
+        dateSelection = 0
+        imgSaved = false
+    }
+    
     var body: some View {
         ZStack {
             Color.black.opacity(0.5).ignoresSafeArea().onTapGesture {
-                if previewImg != nil && cardDataList.firstIndex(of: dateSelection) == nil {
-                    cardDataList.append(dateSelection)
-                }
-                dateSelection = 0
+                quitAction()
             }
             .opacity(isPresented ? 1 : 0)
             .animation(cardPreviewTransition, value: isPresented)
@@ -39,7 +49,7 @@ struct CardPreview: View {
             VStack(spacing: 20) {
                 HStack {
                     Button {
-                        //
+                        delAlert = true
                     } label: {Image(systemName: "trash")
                     }.buttonStyle(PreviewOpButtonStyle(bgColor: .red))
                         .opacity(artIsEmpty ? 0 : 1)
@@ -66,7 +76,8 @@ struct CardPreview: View {
                             }
                         } else { //dark side
                             VStack {
-                                Text("🫥").font(.system(size: 150))
+                                Text((artworkDesign ?? .empty).mood).font(.system(size: 150))
+                                
                             }
                         }
                     }
@@ -88,18 +99,18 @@ struct CardPreview: View {
                 
                 HStack {
                     Button {
-                        if previewImg != nil && cardDataList.firstIndex(of: dateSelection) == nil {
-                            cardDataList.append(dateSelection)
-                        }
-                        dateSelection = 0
+                        quitAction()
                     } label: {Image(systemName: "xmark")
                     }.buttonStyle(PreviewOpButtonStyle(bgColor: .secondary))
                     Spacer()
                     Button {
                         UIImageWriteToSavedPhotosAlbum(previewImg!, nil, nil, nil)
+                        imgSaved = true
+                        haptic.impactOccurred()
                     } label: {Image(systemName: "square.and.arrow.down")
-                    }.buttonStyle(PreviewOpButtonStyle(bgColor: Color.selection))
+                    }.buttonStyle(PreviewOpButtonStyle(bgColor: imgSaved ? Color.gray : Color.selection))
                         .opacity(artIsEmpty ? 0 : 1)
+                        .disabled(imgSaved)
                     Spacer()
                     Button {
                         //
@@ -113,14 +124,42 @@ struct CardPreview: View {
             }.padding(40)
         }
         .fullScreenCover(isPresented: $openEditor, onDismiss: {}) {
-            EditorView(dateInt: dateSelection, previewImg: $previewImg)
+            EditorView(
+                dateInt: dateSelection, previewImg: $previewImg,
+                bgColor: ColorPicker.colors[(artworkDesign ?? .empty).bgColorId / 8][(artworkDesign ?? .empty).bgColorId % 8],
+                mood: (artworkDesign ?? .empty).mood,
+                feelSelf: (artworkDesign ?? .empty).feelSelf,
+                feelWorld: (artworkDesign ?? .empty).feelWorld,
+                p_img_pos: (artworkDesign ?? .empty).imgStyle,
+                s_img: (artworkDesign ?? .empty).imgStyle,
+                artworkImg: UIImage(contentsOfFile: "\(NSHomeDirectory())/Documents/\(dateSelection)/\(dateSelection)_source.jpg") ?? UIImage(named: "img_placeholder")!,
+                show_year_label: (artworkDesign ?? .empty).showYear,
+                p_year_label: (artworkDesign ?? .empty).yearBottom ? 0 : 1,
+                titleContent: (artworkDesign ?? .empty).title,
+                c_title: ColorPicker.colors[(artworkDesign ?? .empty).titleColorId / 8][(artworkDesign ?? .empty).titleColorId % 8],
+                c_date: ColorPicker.colors[(artworkDesign ?? .empty).dateColorId / 8][(artworkDesign ?? .empty).dateColorId % 8],
+                o_date: (artworkDesign ?? .empty).dateOpacityId,
+                show_month: (artworkDesign ?? .empty).dateStyle,
+                p_date: (artworkDesign ?? .empty).datePosition
+            )
+        }
+        .confirmationDialog("confirm delete", isPresented: $delAlert) {
+            Button("Delete this card", role: .destructive) {
+                cardDataList.removeAll(where: {$0 == dateSelection})
+                artworkDesign = nil
+                previewImg = nil
+                try? FileManager.default.removeItem(atPath: "\(NSHomeDirectory())/Documents/\(dateSelection)/")
+                dateSelection = 0
+            }
+        } message: {
+            Text("Deleted cards cannot be recovered.")
         }
     }
 }
 
 struct CardPreview_Previews: PreviewProvider {
     static var previews: some View {
-        CardPreview(dateSelection: .constant(20220621), cardDataList: .constant([20220621]), previewImg: UIImage())
+        CardPreview(dateSelection: .constant(20220621), cardDataList: .constant([20220621]), previewImg: .constant(nil), artworkDesign: .constant(nil))
     }
 }
 

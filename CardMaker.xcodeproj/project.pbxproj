@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4D15744728661FC800DCDCF4 /* PrefsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D15744628661FC800DCDCF4 /* PrefsView.swift */; };
 		4DB73482286075B40098216B /* CardMakerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB73481286075B40098216B /* CardMakerApp.swift */; };
 		4DB73484286075B40098216B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB73483286075B40098216B /* ContentView.swift */; };
 		4DB73486286075B50098216B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4DB73485286075B50098216B /* Assets.xcassets */; };
@@ -25,6 +26,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4D15744628661FC800DCDCF4 /* PrefsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrefsView.swift; sourceTree = "<group>"; };
 		4D411EC62864077600774634 /* todo.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = todo.md; sourceTree = "<group>"; };
 		4DB7347E286075B40098216B /* CardMaker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CardMaker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DB73481286075B40098216B /* CardMakerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardMakerApp.swift; sourceTree = "<group>"; };
@@ -87,6 +89,7 @@
 				4DB734902861BCE20098216B /* CardCalendarView.swift */,
 				4DB7349428622E910098216B /* CardPreview.swift */,
 				4DB7349628623ECC0098216B /* EditorView.swift */,
+				4D15744628661FC800DCDCF4 /* PrefsView.swift */,
 				4DEE84242863854800A50299 /* Pickers */,
 			);
 			path = CardMaker;
@@ -186,6 +189,7 @@
 				4DEE842628638DD800A50299 /* ImagePicker.swift in Sources */,
 				4DB7349528622E910098216B /* CardPreview.swift in Sources */,
 				4DB7349B286373770098216B /* ColorPicker.swift in Sources */,
+				4D15744728661FC800DCDCF4 /* PrefsView.swift in Sources */,
 				4DEE84212863826300A50299 /* FontPicker.swift in Sources */,
 				4DEE841F28637CD600A50299 /* FiveStarRater.swift in Sources */,
 				4DB734992862E0F20098216B /* Helpers.swift in Sources */,
@@ -322,13 +326,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"CardMaker/Preview Content\"";
 				DEVELOPMENT_TEAM = JS2ME2LTBF;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CardMaker/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = CardMaker;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.graphics-design";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "To save your artworks";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "To load and save your artworks";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -340,12 +345,15 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.wyw.CardMaker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				TVOS_DEPLOYMENT_TARGET = 15.5;
 			};
 			name = Debug;
@@ -356,13 +364,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"CardMaker/Preview Content\"";
 				DEVELOPMENT_TEAM = JS2ME2LTBF;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CardMaker/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = CardMaker;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.graphics-design";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "To save your artworks";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "To load and save your artworks";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -374,12 +383,15 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.wyw.CardMaker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				TVOS_DEPLOYMENT_TARGET = 15.5;
 			};
 			name = Release;

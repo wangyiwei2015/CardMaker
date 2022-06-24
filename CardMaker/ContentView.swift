@@ -16,6 +16,9 @@ struct ContentView: View {
     @State var year: Int = Calendar.current.dateComponents([.year], from: Date()).year!
     @State var month: Int = Calendar.current.dateComponents([.month], from: Date()).month!
     
+    @State var preview: UIImage? = nil
+    @State var selectedArtwork: CardDesign? = nil
+    
     var body: some View {
         ZStack {
             VStack {
@@ -24,7 +27,6 @@ struct ContentView: View {
                         prefsBtn
                         yearStepper
                     }
-                    
                     Picker("month", selection: $month) {
                         ForEach(1...12, id: \.self) { id in
                             Text("\(id)")
@@ -40,7 +42,14 @@ struct ContentView: View {
             }
             CardPreview(
                 dateSelection: $dateSelection, cardDataList: $cardDataList,
-                previewImg: CardData.shared.loadPreviews(dateSelection).first)
+                previewImg: $preview, artworkDesign: $selectedArtwork
+            )
+        }.onChange(of: dateSelection) { _ in
+            preview = CardData.shared.loadPreviews(dateSelection).first
+            selectedArtwork = CardData.shared.loadData(dateSelection).first
+        }
+        .fullScreenCover(isPresented: $showsPrefs) {
+            PrefsView()
         }
     }
     
