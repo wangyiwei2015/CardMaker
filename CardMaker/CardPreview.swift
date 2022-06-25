@@ -57,7 +57,8 @@ struct CardPreview: View {
                     }.buttonStyle(PreviewOpButtonStyle(bgColor: .red))
                         .opacity(artIsEmpty ? 0 : 1)
                     Spacer()
-                    Button {openEditor = true
+                    Button {
+                        openEditor = true
                     } label: {Image(systemName: "highlighter")
                     }.buttonStyle(PreviewOpButtonStyle(bgColor: Color.selection))
                 }
@@ -94,9 +95,11 @@ struct CardPreview: View {
                     mainSideRotation.toggle()}
                     let _ = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: false) { _ in mainSide.toggle()}
                 }
-                .scaleEffect(isPresented ? 1 : 0.9)
+                .rotation3DEffect(Angle(degrees: isPresented ? 0 : -15), axis: (-1,1,1))
+                .scaleEffect(isPresented ? 1 : 0.7)
                 .opacity(isPresented ? 1 : 0)
                 .animation(cardPreviewTransition, value: isPresented)
+                .scaleEffect(openEditor ? 1.2 : 1)
                 .offset(y: openEditor ? UIScreen.main.bounds.height : 0)
                 .animation(cardPreviewTransition, value: openEditor)
                 
