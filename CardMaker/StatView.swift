@@ -42,13 +42,13 @@ struct StatView: View {
             VStack {
                 Text("\(streakDays)")
                     .font(numFont).foregroundColor(.selection)
-                Text("Streak")
+                Text("Streaks")
                     .font(labelFont).foregroundColor(.gray)
             }.frame(width: itemWidth)
             VStack {
                 Text("999")
                     .font(numFont).foregroundColor(.selection)
-                Text("Rating")
+                Text("Ratings")
                     .font(labelFont).foregroundColor(.gray)
             }.frame(width: itemWidth)
         }
