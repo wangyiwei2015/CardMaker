@@ -18,7 +18,10 @@ struct CardPreview: View {
     
     @State var openEditor: Bool = false
     @State var delAlert: Bool = false
+    @State var sharingOutput: Bool = false
     @State var imgSaved: Bool = false
+    
+    @Environment(\.colorScheme) var colorScheme
     
     let haptic = UIImpactFeedbackGenerator(style: .light)
     
@@ -84,8 +87,8 @@ struct CardPreview: View {
                     .frame(width: 500, height: 750)
                     .scaleEffect(geo.size.width / 500, anchor: .topLeading)
                 }
-                .aspectRatio(2 / 3, contentMode: .fit)
-                .background(Color.background.shadow(radius: 8, y: 5))
+                .aspectRatio(2 / 3, contentMode: .fit).padding(colorScheme == .dark ? 2 : 0)
+                .background(Color.white.shadow(radius: 8, y: 5))
                 .rotation3DEffect(Angle(degrees: mainSideRotation ? 0 : 180), axis: (x: 0, y: 1, z: 0))
                 .onTapGesture {withAnimation(.spring(response: 0.5, dampingFraction: 0.6)) {
                     mainSideRotation.toggle()}
@@ -113,7 +116,7 @@ struct CardPreview: View {
                         .disabled(imgSaved)
                     Spacer()
                     Button {
-                        //
+                        sharingOutput = true
                     } label: {Image(systemName: "square.and.arrow.up")
                     }.buttonStyle(PreviewOpButtonStyle(bgColor: Color.selection))
                         .opacity(artIsEmpty ? 0 : 1)
@@ -154,6 +157,7 @@ struct CardPreview: View {
         } message: {
             Text("Deleted cards cannot be recovered.")
         }
+        .shareSheet(isPresented: $sharingOutput, items: [URL(fileURLWithPath: "\(NSHomeDirectory())/Documents/\(dateSelection)/\(dateSelection).jpg")])
     }
 }
 

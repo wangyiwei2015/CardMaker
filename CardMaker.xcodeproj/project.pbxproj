@@ -18,6 +18,8 @@
 		4DB7349728623ECC0098216B /* EditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB7349628623ECC0098216B /* EditorView.swift */; };
 		4DB734992862E0F20098216B /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB734982862E0F20098216B /* Helpers.swift */; };
 		4DB7349B286373770098216B /* ColorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB7349A286373770098216B /* ColorPicker.swift */; };
+		4DDE208D2866EB2A00B4CF91 /* EditorView+EditorUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDE208C2866EB2A00B4CF91 /* EditorView+EditorUI.swift */; };
+		4DDE208F2866EB7D00B4CF91 /* EditorView+CardDesign.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDE208E2866EB7D00B4CF91 /* EditorView+CardDesign.swift */; };
 		4DEE841D2863799500A50299 /* MoodPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEE841C2863799500A50299 /* MoodPicker.swift */; };
 		4DEE841F28637CD600A50299 /* FiveStarRater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEE841E28637CD600A50299 /* FiveStarRater.swift */; };
 		4DEE84212863826300A50299 /* FontPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEE84202863826300A50299 /* FontPicker.swift */; };
@@ -40,6 +42,8 @@
 		4DB7349628623ECC0098216B /* EditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorView.swift; sourceTree = "<group>"; };
 		4DB734982862E0F20098216B /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		4DB7349A286373770098216B /* ColorPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPicker.swift; sourceTree = "<group>"; };
+		4DDE208C2866EB2A00B4CF91 /* EditorView+EditorUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EditorView+EditorUI.swift"; sourceTree = "<group>"; };
+		4DDE208E2866EB7D00B4CF91 /* EditorView+CardDesign.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EditorView+CardDesign.swift"; sourceTree = "<group>"; };
 		4DEE841C2863799500A50299 /* MoodPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodPicker.swift; sourceTree = "<group>"; };
 		4DEE841E28637CD600A50299 /* FiveStarRater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiveStarRater.swift; sourceTree = "<group>"; };
 		4DEE84202863826300A50299 /* FontPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontPicker.swift; sourceTree = "<group>"; };
@@ -89,6 +93,8 @@
 				4DB734902861BCE20098216B /* CardCalendarView.swift */,
 				4DB7349428622E910098216B /* CardPreview.swift */,
 				4DB7349628623ECC0098216B /* EditorView.swift */,
+				4DDE208C2866EB2A00B4CF91 /* EditorView+EditorUI.swift */,
+				4DDE208E2866EB7D00B4CF91 /* EditorView+CardDesign.swift */,
 				4D15744628661FC800DCDCF4 /* PrefsView.swift */,
 				4DEE84242863854800A50299 /* Pickers */,
 			);
@@ -193,11 +199,13 @@
 				4DEE84212863826300A50299 /* FontPicker.swift in Sources */,
 				4DEE841F28637CD600A50299 /* FiveStarRater.swift in Sources */,
 				4DB734992862E0F20098216B /* Helpers.swift in Sources */,
+				4DDE208F2866EB7D00B4CF91 /* EditorView+CardDesign.swift in Sources */,
 				4DB73484286075B40098216B /* ContentView.swift in Sources */,
 				4DEE841D2863799500A50299 /* MoodPicker.swift in Sources */,
 				4DB73482286075B40098216B /* CardMakerApp.swift in Sources */,
 				4DB7349728623ECC0098216B /* EditorView.swift in Sources */,
 				4DB734912861BCE20098216B /* CardCalendarView.swift in Sources */,
+				4DDE208D2866EB2A00B4CF91 /* EditorView+EditorUI.swift in Sources */,
 				4DEE84232863854400A50299 /* PositionPicker.swift in Sources */,
 				4DB7349328622D9C0098216B /* Styles.swift in Sources */,
 			);
@@ -326,7 +334,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"CardMaker/Preview Content\"";
 				DEVELOPMENT_TEAM = JS2ME2LTBF;
 				ENABLE_PREVIEWS = YES;
@@ -345,12 +353,12 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.wyw.CardMaker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -364,7 +372,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"CardMaker/Preview Content\"";
 				DEVELOPMENT_TEAM = JS2ME2LTBF;
 				ENABLE_PREVIEWS = YES;
@@ -383,12 +391,12 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.wyw.CardMaker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
