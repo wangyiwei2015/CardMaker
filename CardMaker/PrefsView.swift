@@ -31,10 +31,12 @@ struct PrefsView: View {
             }.padding().background(Color.background)
             ScrollView(.vertical) {
                 VStack {
-                    Text("//Review")
-                    Text("//Source code")
-                    Text("//Contact")
-                    Text("//Get raw data: iTunes file sharing")
+                    Text("// Review link")
+                    Text("// Source code link")
+                    Text("// Contact email")
+                    Text("// Get raw data: iTunes file sharing")
+                    Text("// Import/export zip")
+                    Text("// Stat overview content")
                     HStack {
                         Text("v\(version) (\(build))")
                         Image(systemName: "swift").offset(y: -1)

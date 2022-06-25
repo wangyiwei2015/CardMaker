@@ -21,40 +21,47 @@ struct ContentView: View {
     
     var body: some View {
         ZStack {
-            VStack {
-                Group {
-                    ZStack {
-                        prefsBtn
-                        yearStepper
-                    }
-                    Picker("month", selection: $month) {
-                        ForEach(1...12, id: \.self) { id in
-                            Text("\(id)")
-                        }
-                    }.pickerStyle(SegmentedPickerStyle())
-                    .padding(.horizontal)
-                }//.background(Color(UIColor.systemGray6))
-                CardCalendarView(
-                    selection: $dateSelection, cardDataList: $cardDataList,
-                    year: $year, month: $month
-                )
-                Spacer()
-            }
-            VStack {
-                Spacer()
-                StatView(dataList: cardDataList)
-                    .padding(.bottom, 40)
-            }
+            Group {
+                VStack {
+                    topBar
+                    CardCalendarView(
+                        selection: $dateSelection,
+                        cardDataList: $cardDataList,
+                        year: $year, month: $month
+                    )
+                    Spacer()
+                }
+                VStack {
+                    Spacer()
+                    StatView(dataList: cardDataList).padding(.bottom, 40)
+                }
+            }.blur(radius: (dateSelection > 0) || showsPrefs ? 6 : 0)
             CardPreview(
                 dateSelection: $dateSelection, cardDataList: $cardDataList,
                 previewImg: $preview, artworkDesign: $selectedArtwork
             )
-        }.onChange(of: dateSelection) { _ in
+        }
+        .onChange(of: dateSelection) { _ in
             preview = CardData.shared.loadPreviews(dateSelection).first
             selectedArtwork = CardData.shared.loadData(dateSelection).first
         }
         .fullScreenCover(isPresented: $showsPrefs) {
             PrefsView()
+        }
+    }
+    
+    @ViewBuilder var topBar: some View {
+        Group {
+            ZStack {
+                prefsBtn
+                yearStepper
+            }
+            Picker("month", selection: $month) {
+                ForEach(1...12, id: \.self) { id in
+                    Text("\(id)")
+                }
+            }.pickerStyle(SegmentedPickerStyle())
+                .padding(.horizontal)
         }
     }
     
@@ -97,12 +104,11 @@ struct ContentView: View {
             }.padding()
             Spacer()
             VStack {
-                Button {showsPrefs = true
+                Button {withAnimation{showsPrefs = true}
                 } label: {Image(systemName: "gearshape")
                 }.buttonStyle(PreviewOpButtonStyle(
                     bgColor: .gray, fontSize: 24, paddingSize: 10
                 )).padding(.trailing)
-                //Spacer()
             }
         }
     }

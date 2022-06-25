@@ -10,8 +10,8 @@ import SwiftUI
 struct CalendarCellButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
+            .overlay {Circle().fill(Color.gray).opacity(configuration.isPressed ? 0.2 : 0.08)}
             .scaleEffect(configuration.isPressed ? 0.96 : 1)
-            .opacity(configuration.isPressed ? 0.8 : 1)
             .animation(.linear(duration: 0.06), value: configuration.isPressed)
     }
 }
