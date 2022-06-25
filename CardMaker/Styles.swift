@@ -54,6 +54,25 @@ struct CapsuleOpButtonStyle: ButtonStyle {
     }
 }
 
+struct PrefsCapsuleButtonStyle: ButtonStyle {
+    var bgColor: Color = .selection
+    var fontSize: CGFloat = 20
+    var paddingSize: CGFloat = 16
+    func makeBody(configuration: Configuration) -> some View {
+        let pressed = configuration.isPressed
+        configuration.label.frame(maxWidth: .infinity)
+            .font(.system(size: fontSize, weight: .semibold, design: .rounded))
+            .foregroundColor(bgColor)
+            .padding(paddingSize)
+            .background(
+                Capsule().fill(.background)
+                    .shadow(radius: pressed ? 2 : 4, y: pressed ? 1 : 3)
+            )
+            .scaleEffect(pressed ? 0.96 : 1)
+            .animation(.linear(duration: 0.06), value: configuration.isPressed)
+    }
+}
+
 struct EditSelectionBtnStyle: ButtonStyle {
     var selected: Bool
     func makeBody(configuration: Configuration) -> some View {
@@ -75,7 +94,7 @@ struct Btn_Previews: PreviewProvider {
         Button(action: {}) {
             Text("text")
         }
-        .buttonStyle(EditSelectionBtnStyle(selected: false))
+        .buttonStyle(PrefsCapsuleButtonStyle(bgColor: .gray))
     }
 }
 

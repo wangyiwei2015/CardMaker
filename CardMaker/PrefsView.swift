@@ -31,12 +31,37 @@ struct PrefsView: View {
             }.padding().background(Color.background)
             ScrollView(.vertical) {
                 VStack {
-                    Text("// Review link")
-                    Text("// Source code link")
-                    Text("// Contact email")
-                    Text("// Get raw data: iTunes file sharing")
-                    Text("// Import/export zip")
-                    Text("// Stat overview content")
+                    Button {
+                        //
+                    } label: {
+                        Label("Rate or Review", systemImage: "star.fill")
+                    }
+                    .buttonStyle(PrefsCapsuleButtonStyle())
+                    .padding(.horizontal, 40).padding(.top)
+                    Button {
+                        //
+                    } label: {
+                        Label("View on GitHub", systemImage: "swift")
+                    }
+                    .buttonStyle(PrefsCapsuleButtonStyle())
+                    .padding(.horizontal, 40).padding(.top)
+                    Button {
+                        //
+                    } label: {
+                        Label("Contact by email", systemImage: "envelope.fill")
+                    }
+                    .buttonStyle(PrefsCapsuleButtonStyle())
+                    .padding(.horizontal, 40).padding(.top)
+                    Button {
+                        //
+                    } label: {
+                        Label("Export all data", systemImage: "shippingbox.fill")
+                    }
+                    .buttonStyle(PrefsCapsuleButtonStyle())
+                    .padding(.horizontal, 40).padding(.top)
+                    
+                    Text("or access raw data with iTunes").foregroundColor(.gray)
+                    Text("// Stat overview content").padding()
                     HStack {
                         Text("v\(version) (\(build))")
                         Image(systemName: "swift").offset(y: -1)
