@@ -110,7 +110,7 @@ struct CardPreview: View {
                         UIImageWriteToSavedPhotosAlbum(previewImg!, nil, nil, nil)
                         imgSaved = true
                         haptic.impactOccurred()
-                    } label: {Image(systemName: "square.and.arrow.down")
+                    } label: {Image(systemName: imgSaved ? "checkmark" : "square.and.arrow.down")
                     }.buttonStyle(PreviewOpButtonStyle(bgColor: imgSaved ? Color.gray : Color.selection))
                         .opacity(artIsEmpty ? 0 : 1)
                         .disabled(imgSaved)

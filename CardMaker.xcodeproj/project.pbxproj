@@ -20,6 +20,7 @@
 		4DB7349B286373770098216B /* ColorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB7349A286373770098216B /* ColorPicker.swift */; };
 		4DDE208D2866EB2A00B4CF91 /* EditorView+EditorUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDE208C2866EB2A00B4CF91 /* EditorView+EditorUI.swift */; };
 		4DDE208F2866EB7D00B4CF91 /* EditorView+CardDesign.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDE208E2866EB7D00B4CF91 /* EditorView+CardDesign.swift */; };
+		4DDE20912866F3C500B4CF91 /* StatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDE20902866F3C500B4CF91 /* StatView.swift */; };
 		4DEE841D2863799500A50299 /* MoodPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEE841C2863799500A50299 /* MoodPicker.swift */; };
 		4DEE841F28637CD600A50299 /* FiveStarRater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEE841E28637CD600A50299 /* FiveStarRater.swift */; };
 		4DEE84212863826300A50299 /* FontPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEE84202863826300A50299 /* FontPicker.swift */; };
@@ -44,6 +45,7 @@
 		4DB7349A286373770098216B /* ColorPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPicker.swift; sourceTree = "<group>"; };
 		4DDE208C2866EB2A00B4CF91 /* EditorView+EditorUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EditorView+EditorUI.swift"; sourceTree = "<group>"; };
 		4DDE208E2866EB7D00B4CF91 /* EditorView+CardDesign.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EditorView+CardDesign.swift"; sourceTree = "<group>"; };
+		4DDE20902866F3C500B4CF91 /* StatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatView.swift; sourceTree = "<group>"; };
 		4DEE841C2863799500A50299 /* MoodPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodPicker.swift; sourceTree = "<group>"; };
 		4DEE841E28637CD600A50299 /* FiveStarRater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiveStarRater.swift; sourceTree = "<group>"; };
 		4DEE84202863826300A50299 /* FontPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontPicker.swift; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 				4DDE208E2866EB7D00B4CF91 /* EditorView+CardDesign.swift */,
 				4D15744628661FC800DCDCF4 /* PrefsView.swift */,
 				4DEE84242863854800A50299 /* Pickers */,
+				4DDE20902866F3C500B4CF91 /* StatView.swift */,
 			);
 			path = CardMaker;
 			sourceTree = "<group>";
@@ -198,6 +201,7 @@
 				4D15744728661FC800DCDCF4 /* PrefsView.swift in Sources */,
 				4DEE84212863826300A50299 /* FontPicker.swift in Sources */,
 				4DEE841F28637CD600A50299 /* FiveStarRater.swift in Sources */,
+				4DDE20912866F3C500B4CF91 /* StatView.swift in Sources */,
 				4DB734992862E0F20098216B /* Helpers.swift in Sources */,
 				4DDE208F2866EB7D00B4CF91 /* EditorView+CardDesign.swift in Sources */,
 				4DB73484286075B40098216B /* ContentView.swift in Sources */,

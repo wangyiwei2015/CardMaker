@@ -37,7 +37,7 @@ struct PrefsView: View {
                     Text("//Get raw data: iTunes file sharing")
                     HStack {
                         Text("v\(version) (\(build))")
-                        Image(systemName: "swift")
+                        Image(systemName: "swift").offset(y: -1)
                         Text("SwiftUI")
                     }
                     .font(.system(size: 16, weight: .semibold, design: .rounded))

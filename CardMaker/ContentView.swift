@@ -40,6 +40,11 @@ struct ContentView: View {
                 )
                 Spacer()
             }
+            VStack {
+                Spacer()
+                StatView(dataList: cardDataList)
+                    .padding(.bottom, 40)
+            }
             CardPreview(
                 dateSelection: $dateSelection, cardDataList: $cardDataList,
                 previewImg: $preview, artworkDesign: $selectedArtwork

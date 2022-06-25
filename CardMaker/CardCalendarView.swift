@@ -31,7 +31,7 @@ struct CalendarView<DateView>: View where DateView: View {
     }
 
     var body: some View {
-        LazyVGrid(columns: columns) {sections}.padding(.bottom, 100)
+        LazyVGrid(columns: columns) {sections}//.padding(.bottom, 10)
     }
     
     @ViewBuilder func makeButton(_ month: Date, _ date: Date) -> some View {
@@ -109,26 +109,24 @@ struct CardCalendarView: View {
     }
     
     var body: some View {
-        //NavigationView {
-            VStack {
-                ScrollView(.vertical) {
-                    CalendarView(
-                        interval: .init(
-                            start: Calendar.current.date(from: DateComponents(year: year, month: month))!,
-                            end: Calendar.current.date(from: DateComponents(year: year, month: month))!
-                        ),
-                        //interval: .init(),//Calendar.current.dateInterval(of: .year, for: Date())!,
-                        selection: $selection
-                    ) { date, isToday in
-                        Text(DateFormatter.day.string(from: date))
-                            .font(.system(size: 24, weight: .regular, design: .monospaced))
-                            .foregroundColor(.primary)
-                            .padding(8)
-                            .background(Circle().fill(hasCard(date) ? Color("SelectionSecondary") : Color.clear))
-                            .overlay {Circle().stroke(isToday ? Color.selection : Color.clear, lineWidth: 4)}
-                    }.padding(.horizontal)
-                }
-            //}.navigationTitle("Title?")
+        VStack {
+            //ScrollView(.vertical) {
+                CalendarView(
+                    interval: .init(
+                        start: Calendar.current.date(from: DateComponents(year: year, month: month))!,
+                        end: Calendar.current.date(from: DateComponents(year: year, month: month))!
+                    ),
+                    //interval: .init(),//Calendar.current.dateInterval(of: .year, for: Date())!,
+                    selection: $selection
+                ) { date, isToday in
+                    Text(DateFormatter.day.string(from: date))
+                        .font(.system(size: 24, weight: .regular, design: .monospaced))
+                        .foregroundColor(.primary)
+                        .padding(8)
+                        .background(Circle().fill(hasCard(date) ? Color("SelectionSecondary") : Color.clear))
+                        .overlay {Circle().stroke(isToday ? Color.selection : Color.clear, lineWidth: 4)}
+                }.padding(.horizontal)
+            //}
         }
     }
 }
