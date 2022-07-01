@@ -68,11 +68,7 @@ struct CardPreview: View {
                 
                 GeometryReader { geo in
                     ZStack {
-                        if colorScheme == .light {
-                            Color.background
-                        } else {
-                            Color(UIColor.systemGray6)
-                        }
+                        autoBGColor
                         if mainSide {
                             if let artwork = previewImg {
                                 Image(uiImage: artwork)
@@ -93,7 +89,7 @@ struct CardPreview: View {
                     .scaleEffect(geo.size.width / 500, anchor: .topLeading)
                 }
                 .aspectRatio(2 / 3, contentMode: .fit)//.padding(colorScheme == .dark ? 2 : 0)
-                .background(Color.white.shadow(radius: 8, y: 5))
+                .background(autoBGColor.shadow(radius: 8, y: 5))
                 .rotation3DEffect(Angle(degrees: mainSideRotation ? 0 : 180), axis: (x: 0, y: 1, z: 0))
                 .onTapGesture {withAnimation(.spring(response: 0.5, dampingFraction: 0.6)) {
                     mainSideRotation.toggle()}
@@ -165,6 +161,14 @@ struct CardPreview: View {
             Text("Deleted cards cannot be recovered.")
         }
         .shareSheet(isPresented: $sharingOutput, items: [URL(fileURLWithPath: "\(NSHomeDirectory())/Documents/\(dateSelection)/\(dateSelection).jpg")])
+    }
+    
+    @ViewBuilder var autoBGColor: some View {
+        if colorScheme == .light {
+            Color.white
+        } else {
+            Color(UIColor.systemGray6)
+        }
     }
 }
 

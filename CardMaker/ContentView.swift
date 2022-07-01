@@ -35,8 +35,9 @@ struct ContentView: View {
                 }
                 VStack {
                     Spacer()
-                    StatView(dataList: cardDataList).padding(.bottom, 40)
-                }.drawingGroup()
+                    StatView(dataList: cardDataList)
+                        .padding(.bottom, 40).drawingGroup()
+                }
             }.blur(radius: (dateSelection > 0) || showsPrefs ? 6 : 0)
             CardPreview(
                 dateSelection: $dateSelection, cardDataList: $cardDataList,
@@ -57,7 +58,7 @@ struct ContentView: View {
             ZStack {
                 prefsBtn
                 yearStepper
-            }
+            }.drawingGroup()
             Picker("month", selection: $month) {
                 ForEach(1...12, id: \.self) { id in
                     Text("\(id)")

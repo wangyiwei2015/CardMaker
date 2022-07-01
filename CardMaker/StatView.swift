@@ -46,7 +46,7 @@ struct StatView: View {
                     .font(labelFont).foregroundColor(.gray)
             }.frame(width: itemWidth)
             VStack {
-                Text("999")
+                Text("--")
                     .font(numFont).foregroundColor(.selection)
                 Text("Ratings")
                     .font(labelFont).foregroundColor(.gray)
