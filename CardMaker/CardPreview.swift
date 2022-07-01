@@ -54,13 +54,13 @@ struct CardPreview: View {
                     Button {
                         delAlert = true
                     } label: {Image(systemName: "trash")
-                    }.buttonStyle(PreviewOpButtonStyle(bgColor: .red))
+                    }.buttonStyle(PreviewOpButtonStyle(bgColor: .red, colorScheme: colorScheme))
                         .opacity(artIsEmpty ? 0 : 1)
                     Spacer()
                     Button {
                         openEditor = true
                     } label: {Image(systemName: "highlighter")
-                    }.buttonStyle(PreviewOpButtonStyle(bgColor: Color.selection))
+                    }.buttonStyle(PreviewOpButtonStyle(bgColor: .selection, colorScheme: colorScheme))
                 }
                 .opacity(isPresented ? 1 : 0)
                 .offset(y: isPresented ? 0 : -200)
@@ -68,7 +68,11 @@ struct CardPreview: View {
                 
                 GeometryReader { geo in
                     ZStack {
-                        Color.background
+                        if colorScheme == .light {
+                            Color.background
+                        } else {
+                            Color(UIColor.systemGray6)
+                        }
                         if mainSide {
                             if let artwork = previewImg {
                                 Image(uiImage: artwork)
@@ -88,7 +92,7 @@ struct CardPreview: View {
                     .frame(width: 500, height: 750)
                     .scaleEffect(geo.size.width / 500, anchor: .topLeading)
                 }
-                .aspectRatio(2 / 3, contentMode: .fit).padding(colorScheme == .dark ? 2 : 0)
+                .aspectRatio(2 / 3, contentMode: .fit)//.padding(colorScheme == .dark ? 2 : 0)
                 .background(Color.white.shadow(radius: 8, y: 5))
                 .rotation3DEffect(Angle(degrees: mainSideRotation ? 0 : 180), axis: (x: 0, y: 1, z: 0))
                 .onTapGesture {withAnimation(.spring(response: 0.5, dampingFraction: 0.6)) {
@@ -107,21 +111,21 @@ struct CardPreview: View {
                     Button {
                         quitAction()
                     } label: {Image(systemName: "xmark")
-                    }.buttonStyle(PreviewOpButtonStyle(bgColor: .secondary))
+                    }.buttonStyle(PreviewOpButtonStyle(bgColor: .secondary, colorScheme: colorScheme))
                     Spacer()
                     Button {
                         UIImageWriteToSavedPhotosAlbum(previewImg!, nil, nil, nil)
                         imgSaved = true
                         haptic.impactOccurred()
                     } label: {Image(systemName: imgSaved ? "checkmark" : "square.and.arrow.down")
-                    }.buttonStyle(PreviewOpButtonStyle(bgColor: imgSaved ? Color.gray : Color.selection))
+                    }.buttonStyle(PreviewOpButtonStyle(bgColor: imgSaved ? .gray : .selection, colorScheme: colorScheme))
                         .opacity(artIsEmpty ? 0 : 1)
                         .disabled(imgSaved)
                     Spacer()
                     Button {
                         sharingOutput = true
                     } label: {Image(systemName: "square.and.arrow.up")
-                    }.buttonStyle(PreviewOpButtonStyle(bgColor: Color.selection))
+                    }.buttonStyle(PreviewOpButtonStyle(bgColor: .selection, colorScheme: colorScheme))
                         .opacity(artIsEmpty ? 0 : 1)
                 }
                 .opacity(isPresented ? 1 : 0)

@@ -14,6 +14,8 @@ struct PrefsView: View {
     let version: String = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as? String ?? "?"
     let build: String = Bundle.main.infoDictionary!["CFBundleVersion"] as? String ?? "?"
     
+    @Environment(\.colorScheme) var colorScheme
+    
     var body: some View {
         VStack {
             ZStack {
@@ -25,7 +27,7 @@ struct PrefsView: View {
                     } label: {
                         Image(systemName: "xmark")
                     }.buttonStyle(PreviewOpButtonStyle(
-                        bgColor: .gray, fontSize: 24, paddingSize: 10
+                        bgColor: .gray, fontSize: 24, paddingSize: 10, colorScheme: colorScheme
                     ))
                 }
             }.padding().background(Color.background)

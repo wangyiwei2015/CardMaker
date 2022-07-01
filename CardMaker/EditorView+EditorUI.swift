@@ -24,7 +24,7 @@ extension EditorView {
             }.buttonStyle(EditSelectionBtnStyle(selected: editing == .date))
             Button {editing = .none
             } label: {Image(systemName: "xmark")
-            }.buttonStyle(PreviewOpButtonStyle(bgColor: .gray, fontSize: 18, paddingSize: 6))
+            }.buttonStyle(PreviewOpButtonStyle(bgColor: .gray, fontSize: 18, paddingSize: 6, colorScheme: .light))
                 .padding(.horizontal, 10)
                 .background(Color(UIColor.systemGray6).frame(height: 34))
         }

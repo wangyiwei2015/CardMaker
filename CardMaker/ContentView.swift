@@ -19,6 +19,8 @@ struct ContentView: View {
     @State var preview: UIImage? = nil
     @State var selectedArtwork: CardDesign? = nil
     
+    @Environment(\.colorScheme) var colorScheme
+    
     var body: some View {
         ZStack {
             Group {
@@ -28,13 +30,13 @@ struct ContentView: View {
                         selection: $dateSelection,
                         cardDataList: $cardDataList,
                         year: $year, month: $month
-                    )
+                    ).drawingGroup()
                     Spacer()
                 }
                 VStack {
                     Spacer()
                     StatView(dataList: cardDataList).padding(.bottom, 40)
-                }
+                }.drawingGroup()
             }.blur(radius: (dateSelection > 0) || showsPrefs ? 6 : 0)
             CardPreview(
                 dateSelection: $dateSelection, cardDataList: $cardDataList,
@@ -107,7 +109,7 @@ struct ContentView: View {
                 Button {withAnimation{showsPrefs = true}
                 } label: {Image(systemName: "gearshape")
                 }.buttonStyle(PreviewOpButtonStyle(
-                    bgColor: .gray, fontSize: 24, paddingSize: 10
+                    bgColor: .gray, fontSize: 24, paddingSize: 10, colorScheme: colorScheme
                 )).padding(.trailing)
             }
         }

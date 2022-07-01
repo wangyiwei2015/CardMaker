@@ -20,6 +20,7 @@ struct PreviewOpButtonStyle: ButtonStyle {
     let bgColor: Color
     var fontSize: CGFloat = 30
     var paddingSize: CGFloat = 18
+    let colorScheme: ColorScheme
     func makeBody(configuration: Configuration) -> some View {
         let pressed = configuration.isPressed
         configuration.label
@@ -27,7 +28,7 @@ struct PreviewOpButtonStyle: ButtonStyle {
             .foregroundColor(bgColor)
             .padding(paddingSize)
             .background(
-                Circle().fill(.background)
+                Circle().fill(colorScheme == .light ? .background : Color(UIColor.systemGray6))
                     .shadow(radius: pressed ? 2 : 4, y: pressed ? 1 : 3)
             )
             .scaleEffect(pressed ? 0.96 : 1)
