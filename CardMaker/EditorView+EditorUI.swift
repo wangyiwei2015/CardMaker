@@ -74,7 +74,9 @@ extension EditorView {
         Text("Content").bold().foregroundColor(.gray)
         TextField(text: $titleContent) {
             Text("Tap to edit")
-        }.frame(height: 50).padding(.horizontal).background(
+        }
+        .submitLabel(.done)
+        .frame(height: 50).padding(.horizontal).background(
             Color.background.shadow(radius: 2)
         ).padding(.horizontal)
         Divider().padding()

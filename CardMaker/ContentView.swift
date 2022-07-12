@@ -110,7 +110,7 @@ struct ContentView: View {
                 Button {withAnimation{showsPrefs = true}
                 } label: {Image(systemName: "gearshape")
                 }.buttonStyle(PreviewOpButtonStyle(
-                    bgColor: .gray, fontSize: 24, paddingSize: 10, colorScheme: colorScheme
+                    bgColor: .gray, fontSize: 21, paddingSize: 8, colorScheme: colorScheme
                 )).padding(.trailing)
             }
         }

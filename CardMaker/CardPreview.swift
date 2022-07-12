@@ -73,8 +73,11 @@ struct CardPreview: View {
                             if let artwork = previewImg {
                                 Image(uiImage: artwork)
                                     .resizable().scaledToFit()
+                                    .onDrag {
+                                        NSItemProvider(contentsOf: URL(fileURLWithPath: "\(NSHomeDirectory())/Documents/\(dateSelection)/\(dateSelection).jpg"))!
+                                    }
                             } else {
-                                Text("Create a card for today")
+                                Text("Card of The Day")
                                     .font(.system(size: 32, weight: .semibold, design: .rounded))
                                     .foregroundColor(.secondary)
                             }
