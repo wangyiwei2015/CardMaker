@@ -84,6 +84,12 @@ struct EditorView: View {
         } message: {
             Text("Exit without saving?")
         }
+        .onAppear {
+//            if let savedImg = UIImage(contentsOfFile: "\(NSHomeDirectory())/Documents/\(dateInt)/\(dateInt)_source.jpg") {
+//                artworkImg = savedImg
+//            }
+            print(NSHomeDirectory())
+        }
     }
     
     @ViewBuilder var topBar: some View {

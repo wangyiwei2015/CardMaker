@@ -72,7 +72,7 @@ struct CardPreview: View {
                         if mainSide {
                             if let artwork = previewImg {
                                 Image(uiImage: artwork)
-                                    .resizable().scaledToFit()
+                                    .resizable().scaledToFill()
                                     .onDrag {
                                         NSItemProvider(contentsOf: URL(fileURLWithPath: "\(NSHomeDirectory())/Documents/\(dateSelection)/\(dateSelection).jpg"))!
                                     }
