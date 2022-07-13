@@ -55,6 +55,9 @@ struct EditorView: View {
         [[0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0]]
     ]
     
+    @State var fontName: String = "PingFangSC-Regular"
+    @State var fontSizeIndex: Int = 0
+    
     enum EditingComponents: Int {
     case none, background, image, title, date
     }
@@ -79,6 +82,9 @@ struct EditorView: View {
         }
         .confirmationDialog("Exit without saving?", isPresented: $showsExitAlert) {
             Button("Discard changes and exit", role: .destructive) {
+                if !FileManager.default.fileExists(atPath: "\(NSHomeDirectory())/Documents/\(dateInt)/\(dateInt)_cfg") {
+                    try? FileManager.default.removeItem(atPath: "\(NSHomeDirectory())/Documents/\(dateInt)")
+                }
                 mode.wrappedValue.dismiss()
             }
         } message: {
@@ -101,7 +107,7 @@ struct EditorView: View {
             Button {
                 //
             } label: {Text("Presets").foregroundColor(.secondary)//.selection)
-            }
+            }.hidden()
             Spacer()
             Button {
                 let output = fullSizeCard.snapshot()

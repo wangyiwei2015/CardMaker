@@ -81,7 +81,7 @@ extension EditorView {
         ).padding(.horizontal)
         Divider().padding()
         Text("Font").bold().foregroundColor(.gray)
-        FontPicker()
+        FontPicker(title: titleContent, selectedFont: $fontName, fontSizeIndex: $fontSizeIndex)
         Divider().padding()
         Text("Color").bold().foregroundColor(.gray)
         ColorPicker(color: $c_title).padding([.horizontal, .bottom])

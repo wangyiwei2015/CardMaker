@@ -25,7 +25,7 @@ extension EditorView {
     
     @ViewBuilder var titleText: some View {
         Text(titleContent.replacingOccurrences(of: "\\n", with: "\n"))
-            .font(.system(size: 30, weight: .bold, design: .rounded))
+            .font(.custom(fontName, size: 30 + CGFloat(fontSizeIndex) * 5))
             .foregroundColor(c_title)
             .padding(.horizontal, padding_title[p_img_pos])
             .offset(y: p_title_y[p_img_pos])

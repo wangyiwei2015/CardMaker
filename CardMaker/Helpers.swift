@@ -77,7 +77,8 @@ struct CardDesign {
     var date: Int
     
     var title: String
-    var titleFontId: Int
+    var titleSizeId: Int
+    var titleFontName: String
     var titleColorId: Int
     
     var bgColorId: Int
@@ -96,7 +97,7 @@ struct CardDesign {
     var showYear: Bool
     var yearBottom: Bool
     
-    static let empty = CardDesign(date: 0, title: "Tap to edit", titleFontId: 0, titleColorId: 6, bgColorId: 2, mood: "🫥", imgStyle: 0, dateStyle: 0, dateOpacityId: 2, dateColorId: 2, datePosition: 0, showYear: false, yearBottom: true)
+    static let empty = CardDesign(date: 0, title: "Tap to edit", titleSizeId: 0, titleFontName: "PingFangSC-Regular", titleColorId: 6, bgColorId: 2, mood: "🫥", imgStyle: 0, dateStyle: 0, dateOpacityId: 2, dateColorId: 2, datePosition: 0, showYear: false, yearBottom: true)
 }
 
 class CardData: NSObject {
@@ -118,7 +119,8 @@ class CardData: NSObject {
         try? FileManager.default.removeItem(atPath: imgFile)
         _ = FileManager.default.createFile(atPath: imgFile, contents: output.jpegData(compressionQuality: 1)!)
         var cfgText = work.title
-        cfgText.append("\ntitleFontId=\(work.titleFontId)")
+        cfgText.append("\ntitleSizeId=\(work.titleSizeId)")
+        cfgText.append("\ntitleFont=\(work.titleFontName)")
         cfgText.append("\ntitleColorId=\(work.titleColorId)")
         cfgText.append("\nbgColorId=\(work.bgColorId)")
         cfgText.append("\nmood=\(work.mood)")
@@ -145,7 +147,8 @@ class CardData: NSObject {
             }
             let firstCard = CardDesign(
                 date: designDate, title: String(components[0]),
-                titleFontId: Int(cfgDict["titleFontId"] ?? "0") ?? 0,
+                titleSizeId: Int(cfgDict["titleSizeId"] ?? "0") ?? 0,
+                titleFontName: cfgDict["titleFont"] ?? "PingFangSC-Regular",
                 titleColorId: Int(cfgDict["titleColorId"] ?? "6") ?? 6,
                 bgColorId: Int(cfgDict["bgColorId"] ?? "2") ?? 2,
                 mood: cfgDict["mood"] ?? "🫥",
