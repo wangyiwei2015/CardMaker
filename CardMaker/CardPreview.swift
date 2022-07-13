@@ -149,7 +149,9 @@ struct CardPreview: View {
                 c_date: ColorPicker.colors[(artworkDesign ?? .empty).dateColorId / 8][(artworkDesign ?? .empty).dateColorId % 8],
                 o_date: (artworkDesign ?? .empty).dateOpacityId,
                 show_month: (artworkDesign ?? .empty).dateStyle,
-                p_date: (artworkDesign ?? .empty).datePosition
+                p_date: (artworkDesign ?? .empty).datePosition,
+                fontName: (artworkDesign ?? .empty).titleFontName,
+                fontSizeIndex: (artworkDesign ?? .empty).titleSizeId
             )
         }
         .confirmationDialog("confirm delete", isPresented: $delAlert) {

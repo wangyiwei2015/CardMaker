@@ -112,7 +112,7 @@ struct EditorView: View {
             Button {
                 let output = fullSizeCard.snapshot()
                 let design = CardDesign(
-                    date: dateInt, title: titleContent, titleFontId: 0,
+                    date: dateInt, title: titleContent, titleSizeId: fontSizeIndex, titleFontName: fontName,
                     titleColorId: idOfColor(c_title), bgColorId: idOfColor(bgColor),
                     mood: mood, feelSelf: feelSelf, feelWorld: feelWorld,
                     imgStyle: p_img_pos, dateStyle: show_month, dateOpacityId: o_date,
