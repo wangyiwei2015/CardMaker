@@ -39,6 +39,9 @@ struct CardPreview: View {
         }
         dateSelection = 0
         imgSaved = false
+        #if(DEBUG)
+        print(NSHomeDirectory())
+        #endif
     }
     
     var body: some View {
@@ -78,18 +81,18 @@ struct CardPreview: View {
                                     }
                             } else {
                                 Text("Card of The Day")
-                                    .font(.system(size: 32, weight: .semibold, design: .rounded))
+                                    .font(.system(size: 32 * 0.7, weight: .semibold, design: .rounded))
                                     .foregroundColor(.secondary)
                             }
                         } else { //dark side
                             VStack {
-                                Text((artworkDesign ?? .empty).mood).font(.system(size: 150))
+                                Text((artworkDesign ?? .empty).mood).font(.system(size: 150 * 0.7))
                                 
                             }
                         }
                     }
-                    .frame(width: 500, height: 750)
-                    .scaleEffect(geo.size.width / 500, anchor: .topLeading)
+                    //.frame(width: 500, height: 750)
+                    //.scaleEffect(geo.size.width / 500, anchor: .topLeading)
                 }
                 .aspectRatio(2 / 3, contentMode: .fit)//.padding(colorScheme == .dark ? 2 : 0)
                 .background(autoBGColor.shadow(radius: 8, y: 5))
