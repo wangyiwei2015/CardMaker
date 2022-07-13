@@ -48,7 +48,7 @@ struct PrefsView: View {
                     .buttonStyle(PrefsCapsuleButtonStyle())
                     .padding(.horizontal, 40).padding(.top)
                     Button {
-                        //
+                        UIApplication.shared.open(URL(string: "mailto:wangyw.dev@outlook.com?subject=CardMaker-Feedback&body=v\(version),(\(build))")!)
                     } label: {
                         Label("Contact by email", systemImage: "envelope.fill")
                     }
@@ -64,6 +64,7 @@ struct PrefsView: View {
                     
                     Text("or access raw data with iTunes").foregroundColor(.gray)
                     Text("// Stat overview content").padding()
+                    Text("// Known issue: [!] data loss when saving").padding(.bottom)
                     HStack {
                         Text("v\(version) (\(build))")
                         Image(systemName: "swift").offset(y: -1)
