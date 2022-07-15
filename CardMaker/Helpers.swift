@@ -97,7 +97,7 @@ struct CardDesign {
     var showYear: Bool
     var yearBottom: Bool
     
-    static let empty = CardDesign(date: 0, title: "Tap to edit", titleSizeId: 0, titleFontName: "PingFangSC-Regular", titleColorId: 6, bgColorId: 2, mood: "🫥", imgStyle: 0, dateStyle: 0, dateOpacityId: 2, dateColorId: 2, datePosition: 0, showYear: false, yearBottom: true)
+    static let empty = CardDesign(date: 0, title: NSLocalizedString("_TAP_TO_EDIT", comment: ""), titleSizeId: 0, titleFontName: "PingFangSC-Regular", titleColorId: 6, bgColorId: 2, mood: "🫥", imgStyle: 0, dateStyle: 0, dateOpacityId: 2, dateColorId: 2, datePosition: 0, showYear: false, yearBottom: true)
 }
 
 class CardData: NSObject {

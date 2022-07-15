@@ -50,6 +50,7 @@ struct FontPickerList: View {
     var body: some View {
         ScrollView(.vertical, showsIndicators: true) {
             VStack {
+                Color.clear.frame(height: 20)
                 Section {
                     if let fav = favouriteFonts {
                         ForEach(fav.sorted()) {name in
@@ -74,13 +75,19 @@ struct FontPickerList: View {
                         }
                     }
                 } header: {Label("Favourite", systemImage: "star")
-                } footer: {Divider()
-                }
+                    .font(.system(size: 20))
+                    .foregroundColor(.selection)
+                    .frame(maxWidth: .infinity).padding(5)
+                    .background(Color(UIColor.systemGray6))
+                }// footer: {Divider()}
                 Section {
                     Text("nil")
                 } header: {Label("Featured", systemImage: "heart")
-                } footer: {Divider()
-                }
+                    .font(.system(size: 20))
+                    .foregroundColor(.selection)
+                    .frame(maxWidth: .infinity).padding(5)
+                    .background(Color(UIColor.systemGray6))
+                }// footer: {Divider()}
                 ForEach(UIFont.familyNames) {fname in
                     Section {
                         ForEach(UIFont.fontNames(forFamilyName: fname)) {name in
@@ -105,10 +112,11 @@ struct FontPickerList: View {
                             }
                         }
                     } header: {
-                        Text(fname).hidden()
-                    } footer: {
-                        Divider()
-                    }
+                        Text(fname).font(.system(size: 20))
+                            .foregroundColor(.selection)
+                            .frame(maxWidth: .infinity).padding(5)
+                            .background(Color(UIColor.systemGray6))
+                    }// footer: {Divider()}
                 }
             }
         }
@@ -121,6 +129,6 @@ extension String: Identifiable {
 
 struct FontPicker_Previews: PreviewProvider {
     static var previews: some View {
-        FontPicker(title: "title preview", selectedFont: .constant("MarkerFelt-Thin"), fontSizeIndex: .constant(0))
+        FontPicker(title: "title preview", selectedFont: .constant("MarkerFelt-Thin"), fontSizeIndex: .constant(0), showsPicker: true)
     }
 }

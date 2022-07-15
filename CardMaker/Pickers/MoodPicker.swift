@@ -17,7 +17,7 @@ struct MoodPicker: View {
         HStack {
             ForEach(0..<moods.count, id: \.self) { index in
                 let dotColor = mood != moods[index]
-                    ? Color.clear : Color.selection
+                ? Color.clear : Color(UIColor.systemGray5) //Color.selection
                 makeColorButton(index, dotColor: dotColor)
             }
         }
@@ -27,8 +27,9 @@ struct MoodPicker: View {
         Button {mood = moods[index]
         } label: {
             ZStack {
+                Circle().fill(dotColor).scaleEffect(1.2)
                 Text(moods[index]).font(.system(size: 36))
-                Circle().stroke(dotColor, lineWidth: 4).scaleEffect(1.1)
+                //Circle().stroke(dotColor, lineWidth: 4).scaleEffect(1.1)
             }.frame(width: 36, height: 36)
         }
     }
