@@ -59,6 +59,7 @@ struct PrefsCapsuleButtonStyle: ButtonStyle {
     var bgColor: Color = .selection
     var fontSize: CGFloat = 20
     var paddingSize: CGFloat = 16
+    var colorScheme: ColorScheme
     func makeBody(configuration: Configuration) -> some View {
         let pressed = configuration.isPressed
         configuration.label.frame(maxWidth: .infinity)
@@ -66,7 +67,7 @@ struct PrefsCapsuleButtonStyle: ButtonStyle {
             .foregroundColor(bgColor)
             .padding(paddingSize)
             .background(
-                Capsule().fill(.background)
+                Capsule().fill(colorScheme == .light ? .white : Color(UIColor.systemGray6))
                     .shadow(radius: pressed ? 2 : 4, y: pressed ? 1 : 3)
             )
             .scaleEffect(pressed ? 0.96 : 1)
@@ -95,7 +96,7 @@ struct Btn_Previews: PreviewProvider {
         Button(action: {}) {
             Text("text")
         }
-        .buttonStyle(PrefsCapsuleButtonStyle(bgColor: .gray))
+        .buttonStyle(PrefsCapsuleButtonStyle(bgColor: .gray, colorScheme: .light))
     }
 }
 

@@ -80,8 +80,8 @@ struct CardPreview: View {
                                         NSItemProvider(contentsOf: URL(fileURLWithPath: "\(NSHomeDirectory())/Documents/\(dateSelection)/\(dateSelection).jpg"))!
                                     }
                             } else {
-                                Text("Card of The Day")
-                                    .font(.system(size: 32 * 0.7, weight: .semibold, design: .rounded))
+                                Text("_EMPTY_CARD_PREVIEW")
+                                    .font(.system(size: 32 * 0.7, weight: .regular, design: .rounded))
                                     .foregroundColor(.secondary)
                             }
                         } else { //dark side
@@ -158,7 +158,7 @@ struct CardPreview: View {
             )
         }
         .confirmationDialog("confirm delete", isPresented: $delAlert) {
-            Button("Delete this card", role: .destructive) {
+            Button("_CARD_DEL", role: .destructive) {
                 cardDataList.removeAll(where: {$0 == dateSelection})
                 artworkDesign = nil
                 previewImg = nil
@@ -166,7 +166,7 @@ struct CardPreview: View {
                 dateSelection = 0
             }
         } message: {
-            Text("Deleted cards cannot be recovered.")
+            Text("_CARD_DEL_ALERT")
         }
         .shareSheet(isPresented: $sharingOutput, items: [URL(fileURLWithPath: "\(NSHomeDirectory())/Documents/\(dateSelection)/\(dateSelection).jpg")])
     }

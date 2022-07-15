@@ -22,7 +22,9 @@ struct FontPicker: View {
                 Button("change") {
                     showsPicker = true
                 }
-            }
+                .font(.system(size: 20, weight: .semibold, design: .rounded))
+                .foregroundColor(.selection)
+            }.padding(.top, 10)
             Picker("", selection: $fontSizeIndex) {
                 Text("Smaller").tag(-1)
                 Text("Default").tag(0)
@@ -43,11 +45,34 @@ struct FontPickerList: View {
     @Binding var selectedFont: String
     @Environment(\.presentationMode) var presentationMode
     
+    @State var favouriteFonts: [String]? = UserDefaults.standard.array(forKey: "_FAV_FONTS") as? [String]
+    
     var body: some View {
         ScrollView(.vertical, showsIndicators: true) {
             VStack {
                 Section {
-                    Text("nil")
+                    if let fav = favouriteFonts {
+                        ForEach(fav.sorted()) {name in
+                            Button(name) {
+                                selectedFont = name
+                                presentationMode.wrappedValue.dismiss()
+                            }
+                            .font(.custom(name, size: 20))
+                            .foregroundColor(.primary)
+                            .padding(8)
+                            .contextMenu {
+                                Button {
+                                    if favouriteFonts == nil {
+                                        favouriteFonts = []
+                                    }
+                                    favouriteFonts!.removeAll(where: {$0 == name})
+                                    UserDefaults.standard.set(favouriteFonts!, forKey: "_FAV_FONTS")
+                                } label: {
+                                    Label("Remove favourite", systemImage: "trash.fill")
+                                }
+                            }
+                        }
+                    }
                 } header: {Label("Favourite", systemImage: "star")
                 } footer: {Divider()
                 }
@@ -57,19 +82,32 @@ struct FontPickerList: View {
                 } footer: {Divider()
                 }
                 ForEach(UIFont.familyNames) {fname in
-                    Section(fname) {
+                    Section {
                         ForEach(UIFont.fontNames(forFamilyName: fname)) {name in
                             Button(name) {
                                 selectedFont = name
                                 presentationMode.wrappedValue.dismiss()
-                            }.contextMenu {
+                            }
+                            .font(.custom(name, size: 20))
+                            .foregroundColor(.primary)
+                            .padding(8)
+                            .contextMenu {
                                 Button {
-                                    print(0)
+                                    if favouriteFonts == nil {
+                                        favouriteFonts = []
+                                    }
+                                    guard favouriteFonts!.firstIndex(of: name) == nil else {return}
+                                    favouriteFonts!.append(name)
+                                    UserDefaults.standard.set(favouriteFonts!, forKey: "_FAV_FONTS")
                                 } label: {
                                     Label("Favourite", systemImage: "star.fill")
                                 }
                             }
-                        }.background(Color(UIColor.systemGray6))
+                        }
+                    } header: {
+                        Text(fname).hidden()
+                    } footer: {
+                        Divider()
                     }
                 }
             }

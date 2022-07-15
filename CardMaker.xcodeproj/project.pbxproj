@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4D15744728661FC800DCDCF4 /* PrefsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D15744628661FC800DCDCF4 /* PrefsView.swift */; };
+		4D8A67072881490700935AE3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4D8A67092881490700935AE3 /* Localizable.strings */; };
 		4DB73482286075B40098216B /* CardMakerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB73481286075B40098216B /* CardMakerApp.swift */; };
 		4DB73484286075B40098216B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB73483286075B40098216B /* ContentView.swift */; };
 		4DB73486286075B50098216B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4DB73485286075B50098216B /* Assets.xcassets */; };
@@ -31,6 +32,8 @@
 /* Begin PBXFileReference section */
 		4D15744628661FC800DCDCF4 /* PrefsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrefsView.swift; sourceTree = "<group>"; };
 		4D411EC62864077600774634 /* todo.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = todo.md; sourceTree = "<group>"; };
+		4D8A67082881490700935AE3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		4D8A670A2881491700935AE3 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		4DB7347E286075B40098216B /* CardMaker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CardMaker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DB73481286075B40098216B /* CardMakerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardMakerApp.swift; sourceTree = "<group>"; };
 		4DB73483286075B40098216B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -100,6 +103,7 @@
 				4D15744628661FC800DCDCF4 /* PrefsView.swift */,
 				4DDE20902866F3C500B4CF91 /* StatView.swift */,
 				4DEE84242863854800A50299 /* Pickers */,
+				4D8A67092881490700935AE3 /* Localizable.strings */,
 			);
 			path = CardMaker;
 			sourceTree = "<group>";
@@ -167,6 +171,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = 4DB73475286075B40098216B;
 			productRefGroup = 4DB7347F286075B40098216B /* Products */;
@@ -184,6 +189,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4DB73489286075B50098216B /* Preview Assets.xcassets in Resources */,
+				4D8A67072881490700935AE3 /* Localizable.strings in Resources */,
 				4DB73486286075B50098216B /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -217,11 +223,24 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXVariantGroup section */
+		4D8A67092881490700935AE3 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4D8A67082881490700935AE3 /* en */,
+				4D8A670A2881491700935AE3 /* zh-Hans */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
 		4DB7348A286075B50098216B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -282,6 +301,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -338,7 +358,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 13;
 				DEVELOPMENT_ASSET_PATHS = "\"CardMaker/Preview Content\"";
 				DEVELOPMENT_TEAM = JS2ME2LTBF;
 				ENABLE_PREVIEWS = YES;
@@ -357,7 +377,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.0;
+				MARKETING_VERSION = 1.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.wyw.CardMaker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -376,7 +396,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 13;
 				DEVELOPMENT_ASSET_PATHS = "\"CardMaker/Preview Content\"";
 				DEVELOPMENT_TEAM = JS2ME2LTBF;
 				ENABLE_PREVIEWS = YES;
@@ -395,7 +415,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.0;
+				MARKETING_VERSION = 1.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.wyw.CardMaker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

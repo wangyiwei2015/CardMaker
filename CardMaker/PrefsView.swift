@@ -34,37 +34,37 @@ struct PrefsView: View {
             ScrollView(.vertical) {
                 VStack {
                     Button {
-                        //
+                        UIApplication.shared.open(URL(string: "https://apps.apple.com/cn/app/calendar-card-maker/id1631577584")!)
                     } label: {
                         Label("Rate or Review", systemImage: "star.fill")
                     }
-                    .buttonStyle(PrefsCapsuleButtonStyle())
+                    .buttonStyle(PrefsCapsuleButtonStyle(colorScheme: colorScheme))
                     .padding(.horizontal, 40).padding(.top)
                     Button {
-                        //
+                        UIApplication.shared.open(URL(string: "https://github.com/wangyiwei2015/CardMaker")!)
                     } label: {
                         Label("View on GitHub", systemImage: "swift")
                     }
-                    .buttonStyle(PrefsCapsuleButtonStyle())
+                    .buttonStyle(PrefsCapsuleButtonStyle(colorScheme: colorScheme))
                     .padding(.horizontal, 40).padding(.top)
                     Button {
                         UIApplication.shared.open(URL(string: "mailto:wangyw.dev@outlook.com?subject=CardMaker-Feedback&body=v\(version),(\(build))")!)
                     } label: {
                         Label("Contact by email", systemImage: "envelope.fill")
                     }
-                    .buttonStyle(PrefsCapsuleButtonStyle())
+                    .buttonStyle(PrefsCapsuleButtonStyle(colorScheme: colorScheme))
                     .padding(.horizontal, 40).padding(.top)
+                    /*
                     Button {
                         //
                     } label: {
                         Label("Export all data", systemImage: "shippingbox.fill")
                     }
-                    .buttonStyle(PrefsCapsuleButtonStyle())
+                    .buttonStyle(PrefsCapsuleButtonStyle(colorScheme: colorScheme))
                     .padding(.horizontal, 40).padding(.top)
-                    
                     Text("or access raw data with iTunes").foregroundColor(.gray)
-                    Text("// Stat overview content").padding()
-                    Text("// Known issue: [!] data loss when saving").padding(.bottom)
+                    */
+                    
                     HStack {
                         Text("v\(version) (\(build))")
                         Image(systemName: "swift").offset(y: -1)

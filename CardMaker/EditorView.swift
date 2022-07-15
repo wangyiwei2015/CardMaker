@@ -34,7 +34,7 @@ struct EditorView: View {
     @State var p_year_label: Int = 0 // bottom, top (if shown)
     let p_year_y: [CGFloat] = [350, -350]
     
-    @State var titleContent: String = "Tap to edit"
+    @State var titleContent: String = NSLocalizedString("_TAP_TO_EDIT", comment: "")
     @State var c_title: Color = .gray
     let p_title_y: [CGFloat] = [200, 310, 220, 290] // index is p_img_pos
     let padding_title: [CGFloat] = [36, 30, 20, 20]

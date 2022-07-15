@@ -1,0 +1,15 @@
+/* 
+  Localizable.strings
+  CardMaker
+
+  Created by wyw on 2022/7/15.
+  
+*/
+
+"_EMPTY_CARD_PREVIEW"="Card of The Day";
+"_CARD_DEL"="Delete this card";
+"_CARD_DEL_ALERT"="Deleted cards cannot be recovered.";
+
+"_TAP_TO_EDIT"="Tap to edit";
+
+"_COUNT_MORE_THAN_26"="You have >= 26 entries this month.";

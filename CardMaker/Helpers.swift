@@ -116,8 +116,14 @@ class CardData: NSObject {
         try? FileManager.default.createDirectory(atPath: "\(dataDir)\(designDate)/", withIntermediateDirectories: true)
         let configFile = "\(dataDir)\(designDate)/\(work.date)_cfg"
         let imgFile = "\(dataDir)\(designDate)/\(work.date).jpg"
+        
         try? FileManager.default.removeItem(atPath: imgFile)
         _ = FileManager.default.createFile(atPath: imgFile, contents: output.jpegData(compressionQuality: 1)!)
+        
+        let sourcePath = "\(NSHomeDirectory())/Documents/\(designDate)/\(designDate)_source.jpg"
+        try? FileManager.default.removeItem(atPath: sourcePath)
+        try? FileManager.default.moveItem(atPath: "\(NSHomeDirectory())/tmp/\(designDate)_\(designDate).jpg", toPath: sourcePath)
+        
         var cfgText = work.title
         cfgText.append("\ntitleSizeId=\(work.titleSizeId)")
         cfgText.append("\ntitleFont=\(work.titleFontName)")
@@ -139,7 +145,7 @@ class CardData: NSObject {
     public func loadData(_ designDate: Int) -> [CardDesign] {
         if let cfgText = try? String(contentsOfFile: "\(dataDir)\(designDate)/\(designDate)_cfg") {
             let components = cfgText.split(separator: "\n")
-            guard components.count == 14 else {return []}
+            guard components.count > 12 else {return []} // maybe dont need this check®
             var cfgDict: [String:String] = [:]
             components.filter({String($0).firstIndex(of: "=") != nil}).forEach { str in
                 let kvp = str.split(separator: "=")

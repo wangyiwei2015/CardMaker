@@ -73,7 +73,7 @@ extension EditorView {
     @ViewBuilder var titleEditor: some View {
         Text("Content").bold().foregroundColor(.gray)
         TextField(text: $titleContent) {
-            Text("Tap to edit")
+            Text("_TAP_TO_EDIT")
         }
         .submitLabel(.done)
         .frame(height: 50).padding(.horizontal).background(

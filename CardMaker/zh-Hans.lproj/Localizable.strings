@@ -1,0 +1,68 @@
+/* 
+  Localizable.strings
+  CardMaker
+
+  Created by wyw on 2022/7/15.
+  
+*/
+
+"_EMPTY_CARD_PREVIEW"="今天的卡片";
+"_CARD_DEL"="删除卡片";
+"_CARD_DEL_ALERT"="注意：删除后无法恢复";
+
+"_TAP_TO_EDIT"="点击此处编辑标题";
+"No editor"="未选择项目";
+"Discard changes and exit"="丢弃更改并退出";
+"Exit without saving?"="内容未保存";
+"Exit"="返回";
+"Presets"="预设";
+"Save"="保存";
+
+"BG"="背景";
+"IMG"="图片";
+"TITLE"="标题";
+"DATE"="日期";
+"Background color"="背景颜色";
+"Mood of the day"="今天的心情";
+"Your feel about yourself"="今天对自己的评价";
+"Your feel about the world"="今天对世界的评价";
+"Image content"="图片内容";
+"Image style"="图片样式";
+"Style:"="排版：";
+"Small"="小图";
+"Large"="大图";
+"Half"="半边";
+"Full"="填充";
+"Shadow:"="阴影：";
+"None"="无";
+"Content"="内容";
+"Font"="字体";
+"Color"="颜色";
+"Format:"="格式：";
+"Date label style"="日期标签";
+"Hidden"="隐藏";
+"Opacity:"="不透明度：";
+"Low"="低";
+"Med"="中";
+"High"="高";
+"Full"="满";
+"Date label position"="日期位置";
+"Year label style"="年份位置";
+"Show year label"="显示年标签";
+"Position:"="位置：";
+"Bottom"="底部";
+"Top"="顶部";
+
+"Smaller"="更小";
+"Default"="默认大小";
+"Bigger"="更大";
+"change"="更换字体";
+"Featured"="App内置";
+"Favourite"="收藏";
+
+"Preferences"="偏好设置";
+"Entries"="全部卡片";
+"Streaks"="本月连续";
+"Annual"="本年总计";
+"_COUNT_MORE_THAN_26"="你本月连续制作了26天！";
+"Dismiss"="关闭";

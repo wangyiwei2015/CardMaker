@@ -15,6 +15,8 @@ struct StatView: View {
     let numFont = Font.system(size: 36, weight: .bold, design: .rounded)
     let labelFont = Font.system(size: 20, weight: .semibold, design: .rounded)
     
+    @State var showsAlert = false
+    
     var streakDays: Int {
         guard dataList.count > 0 else {return 0}
         let sortedList = dataList.sorted()
@@ -28,7 +30,7 @@ struct StatView: View {
                 streak += 1
             }
         }
-        return streak
+        return min(streak, 26)
     }
     
     var body: some View {
@@ -41,22 +43,30 @@ struct StatView: View {
             }.frame(width: itemWidth)
             VStack {
                 Text("\(streakDays)")
-                    .font(numFont).foregroundColor(.selection)
+                    .font(numFont).foregroundColor(streakDays < 26 ? .selection : .orange)
+                    .onTapGesture {
+                        if streakDays > 25 {
+                            showsAlert = true
+                        }
+                    }
                 Text("Streaks")
                     .font(labelFont).foregroundColor(.gray)
             }.frame(width: itemWidth)
             VStack {
-                Text("--")
+                Text("\(dataList.filter({Int($0 / 10000) == Calendar.current.dateComponents(in: .current, from: .now).year!}).count)")
                     .font(numFont).foregroundColor(.selection)
-                Text("Ratings")
+                Text("Annual")
                     .font(labelFont).foregroundColor(.gray)
             }.frame(width: itemWidth)
         }
+        .alert("Wow", isPresented: $showsAlert, actions: {
+            Button("Dismiss") {}
+        }, message: {Text("_COUNT_MORE_THAN_26")})
     }
 }
 
 struct StatView_Previews: PreviewProvider {
     static var previews: some View {
-        StatView(dataList: [1,2,3,4,5,7,8,9])
+        StatView(dataList: [1,4,5,7,8,9,20220618])
     }
 }

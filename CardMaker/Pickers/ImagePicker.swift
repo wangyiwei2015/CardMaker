@@ -65,11 +65,9 @@ class ImagePickerCoordinator: NSObject, UINavigationControllerDelegate, UIImageP
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let chosenImg = (info[.editedImage] as? UIImage) ?? (info[.originalImage] as! UIImage)
         img = chosenImg
-        let path = "\(NSHomeDirectory())/Documents/\(designDate)/\(cardDate)_source.jpg"
-        try! FileManager.default.createDirectory(atPath: "\(NSHomeDirectory())/Documents/\(designDate)/", withIntermediateDirectories: true)
-        //try? FileManager.default.removeItem(atPath: path)
-        //print(FileManager.default.createFile(atPath: path, contents: nil))// chosenImg.jpegData(compressionQuality: 1)!))
-        try! chosenImg.jpegData(compressionQuality: 1)!.write(to: URL(fileURLWithPath: path), options: .atomic)
+        //let path = "\(NSHomeDirectory())/Documents/\(designDate)/\(cardDate)_source.jpg"
+        //try! FileManager.default.createDirectory(atPath: "\(NSHomeDirectory())/Documents/\(designDate)/", withIntermediateDirectories: true)
+        try! chosenImg.jpegData(compressionQuality: 1)!.write(to: URL(fileURLWithPath: "\(NSHomeDirectory())/tmp/\(designDate)_\(cardDate).jpg"), options: .atomic)
         picker.dismiss(animated: true)
     }
 
