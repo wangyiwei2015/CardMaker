@@ -124,7 +124,7 @@ class CardData: NSObject {
         try? FileManager.default.removeItem(atPath: sourcePath)
         try? FileManager.default.moveItem(atPath: "\(NSHomeDirectory())/tmp/\(designDate)_\(designDate).jpg", toPath: sourcePath)
         
-        var cfgText = work.title
+        var cfgText = work.title.count < 1 ? " " : work.title
         cfgText.append("\ntitleSizeId=\(work.titleSizeId)")
         cfgText.append("\ntitleFont=\(work.titleFontName)")
         cfgText.append("\ntitleColorId=\(work.titleColorId)")
