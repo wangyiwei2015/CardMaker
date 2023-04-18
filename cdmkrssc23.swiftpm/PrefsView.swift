@@ -48,6 +48,7 @@ struct PrefsView: View {
                         Label("Contact by email", systemImage: "envelope.fill")
                     }
                     .buttonStyle(PrefsCapsuleButtonStyle(colorScheme: colorScheme))
+                    .padding(.horizontal, 40).padding(.top)
                     
                     HStack {
                         Text("v\(version) (\(build))")
