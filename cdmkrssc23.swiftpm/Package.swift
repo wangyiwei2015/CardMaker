@@ -18,7 +18,7 @@ let package = Package(
             targets: ["AppModule"],
             bundleIdentifier: "com.wyw.cdmkrssc23",
             teamIdentifier: "JS2ME2LTBF",
-            displayVersion: "1.0",
+            displayVersion: "1.3",
             bundleVersion: "1",
             appIcon: .asset("AppIcon"),
             accentColor: .presetColor(.cyan),

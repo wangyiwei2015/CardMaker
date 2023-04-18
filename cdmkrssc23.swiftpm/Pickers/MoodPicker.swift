@@ -1,9 +1,4 @@
-//
 //  MoodPicker.swift
-//  CardMaker
-//
-//  Created by wyw on 2022/6/23.
-//
 
 import SwiftUI
 

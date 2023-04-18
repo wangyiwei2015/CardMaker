@@ -1,9 +1,4 @@
-//
 //  StatView.swift
-//  CardMaker
-//
-//  Created by wyw on 2022/6/25.
-//
 
 import SwiftUI
 

@@ -1,9 +1,4 @@
-//
 //  CardPreview.swift
-//  CardMaker
-//
-//  Created by wyw on 2022/6/22.
-//
 
 import SwiftUI
 
@@ -25,13 +20,9 @@ struct CardPreview: View {
     
     let haptic = UIImpactFeedbackGenerator(style: .light)
     
-    var artIsEmpty: Bool {
-        previewImg == nil
-    }
+    var artIsEmpty: Bool {previewImg == nil}
     
-    var isPresented: Bool {
-        dateSelection > 0
-    }
+    var isPresented: Bool {dateSelection > 0}
     
     func quitAction() {
         if previewImg != nil && cardDataList.firstIndex(of: dateSelection) == nil {
@@ -91,10 +82,8 @@ struct CardPreview: View {
                             }
                         }
                     }
-                    //.frame(width: 500, height: 750)
-                    //.scaleEffect(geo.size.width / 500, anchor: .topLeading)
                 }
-                .aspectRatio(2 / 3, contentMode: .fit)//.padding(colorScheme == .dark ? 2 : 0)
+                .aspectRatio(2 / 3, contentMode: .fit)
                 .background(autoBGColor.shadow(radius: 8, y: 5))
                 .rotation3DEffect(Angle(degrees: mainSideRotation ? 0 : 180), axis: (x: 0, y: 1, z: 0))
                 .onTapGesture {withAnimation(.spring(response: 0.5, dampingFraction: 0.6)) {

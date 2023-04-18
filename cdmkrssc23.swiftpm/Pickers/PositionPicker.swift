@@ -1,9 +1,4 @@
-//
 //  PositionPicker.swift
-//  CardMaker
-//
-//  Created by wyw on 2022/6/23.
-//
 
 import SwiftUI
 
@@ -45,13 +40,13 @@ struct PositionPicker: View {
                             .overlay {Text("↘")}
                     }.buttonStyle(StarBtnStyle())
                 }
-            }.frame(width: 240, height: 100)
+            }.frame(width: 200, height: 100)
             Button {position = 0
             } label: {
                 Capsule().fill(position == 0 ? Color.selection : deactiveColor)
                     .shadow(radius: shadowRadius)
                     .overlay {Text("●")}
-            }.buttonStyle(StarBtnStyle()).frame(width: 100, height: 64)
+            }.buttonStyle(StarBtnStyle()).frame(width: 64, height: 64)
         }
     }
 }

@@ -1,9 +1,4 @@
-//
 //  EditorView+EditorUI.swift
-//  CardMaker
-//
-//  Created by wyw on 2022/6/25.
-//
 
 import SwiftUI
 
@@ -37,12 +32,6 @@ extension EditorView {
         Text("Mood of the day").bold().foregroundColor(.gray)
         MoodPicker(mood: $mood)
         Divider().padding()
-        Text("Your feel about yourself").bold().foregroundColor(.gray)
-        FiveStarRater(starCount: $feelSelf)
-            .padding(.bottom)
-        Text("Your feel about the world").bold().foregroundColor(.gray)
-        FiveStarRater(starCount: $feelWorld)
-            .padding(.bottom)
     }
     
     @ViewBuilder var imageEditor: some View {

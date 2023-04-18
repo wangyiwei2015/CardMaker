@@ -1,9 +1,4 @@
-//
 //  CalendarView.swift
-//  CardMaker
-//
-//  Created by wyw on 2022/6/21.
-//
 
 import SwiftUI
 
@@ -110,13 +105,11 @@ struct CardCalendarView: View {
     
     var body: some View {
         VStack {
-            //ScrollView(.vertical) {
                 CalendarView(
                     interval: .init(
                         start: Calendar.current.date(from: DateComponents(year: year, month: month))!,
                         end: Calendar.current.date(from: DateComponents(year: year, month: month))!
                     ),
-                    //interval: .init(),//Calendar.current.dateInterval(of: .year, for: Date())!,
                     selection: $selection
                 ) { date, isToday in
                     Text(DateFormatter.day.string(from: date))
@@ -139,12 +132,8 @@ struct CalendarView_Previews: PreviewProvider {
             year: .constant(2022),
             month: .constant(6)
         )
-        //.frame(height: 300)
-        //.background(Color(UIColor.systemBackground).shadow(radius: 10))
     }
 }
-
-//--- Extensions ---
 
 fileprivate extension DateFormatter {
     static var day: DateFormatter {

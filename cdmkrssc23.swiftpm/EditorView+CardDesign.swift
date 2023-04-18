@@ -1,9 +1,4 @@
-//
 //  EditorView+CardDesign.swift
-//  CardMaker
-//
-//  Created by wyw on 2022/6/25.
-//
 
 import SwiftUI
 
@@ -44,10 +39,6 @@ extension EditorView {
     
     @ViewBuilder var fullSizeCard: some View {
         ZStack {
-            //ZStack {
-                //sth
-                //Rectangle().stroke(Color.selection, lineWidth: 4)//.scaleEffect(1.05)
-            //}
             Group {
                 bgColor.onTapGesture {editing = .background}
                 userImage.onTapGesture {editing = .image}

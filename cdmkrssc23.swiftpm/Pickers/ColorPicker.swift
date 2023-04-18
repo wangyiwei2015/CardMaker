@@ -1,9 +1,4 @@
-//
 //  ColorPicker.swift
-//  CardMaker
-//
-//  Created by wyw on 2022/6/22.
-//
 
 import SwiftUI
 

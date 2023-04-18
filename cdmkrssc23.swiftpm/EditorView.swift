@@ -1,9 +1,4 @@
-//
 //  EditorView.swift
-//  CardMaker
-//
-//  Created by wyw on 2022/6/22.
-//
 
 import SwiftUI
 
@@ -90,12 +85,6 @@ struct EditorView: View {
         } message: {
             Text("Exit without saving?")
         }
-        .onAppear {
-//            if let savedImg = UIImage(contentsOfFile: "\(NSHomeDirectory())/Documents/\(dateInt)/\(dateInt)_source.jpg") {
-//                artworkImg = savedImg
-//            }
-            print(NSHomeDirectory())
-        }
     }
     
     @ViewBuilder var topBar: some View {
@@ -105,8 +94,7 @@ struct EditorView: View {
             }
             Spacer()
             Button {
-                //
-            } label: {Text("Presets").foregroundColor(.secondary)//.selection)
+            } label: {Text("Presets").foregroundColor(.secondary)
             }.hidden()
             Spacer()
             Button {

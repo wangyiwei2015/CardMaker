@@ -1,9 +1,4 @@
-//
 //  PrefsView.swift
-//  CardMaker
-//
-//  Created by wyw on 2022/6/25.
-//
 
 import SwiftUI
 
@@ -53,17 +48,6 @@ struct PrefsView: View {
                         Label("Contact by email", systemImage: "envelope.fill")
                     }
                     .buttonStyle(PrefsCapsuleButtonStyle(colorScheme: colorScheme))
-                    .padding(.horizontal, 40).padding(.top)
-                    /*
-                    Button {
-                        //
-                    } label: {
-                        Label("Export all data", systemImage: "shippingbox.fill")
-                    }
-                    .buttonStyle(PrefsCapsuleButtonStyle(colorScheme: colorScheme))
-                    .padding(.horizontal, 40).padding(.top)
-                    Text("or access raw data with iTunes").foregroundColor(.gray)
-                    */
                     
                     HStack {
                         Text("v\(version) (\(build))")
@@ -75,11 +59,5 @@ struct PrefsView: View {
                 }
             }
         }
-    }
-}
-
-struct PrefsView_Previews: PreviewProvider {
-    static var previews: some View {
-        PrefsView()
     }
 }
