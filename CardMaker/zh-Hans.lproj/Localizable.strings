@@ -66,3 +66,17 @@
 "Annual"="本年总计";
 "_COUNT_MORE_THAN_26"="你本月连续制作了26天！";
 "Dismiss"="关闭";
+
+"Appearance"="显示与资源";
+"Widgets"="桌面小组件";
+"Export all data"="导出所有数据";
+"(or access raw data with iTunes)"="也可以通过 iTunes/Finder 导出";
+"Rate or Review"="在 App Store 评分";
+"View on GitHub"="在 GitHub 上查看";
+"Contact by email"="发送反馈";
+"IN MEMORY OF"="致敬";
+"RI-QIAN"="日签";
+
+"Quality of imported photo" = "导入照片的(压缩)质量";
+"Using custom font" = "使用其他自定义字体";
+"_Custom_font_instr" = "要使用更多字体，请将字体文件安装到系统。";

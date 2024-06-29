@@ -77,27 +77,61 @@ struct FontPickerList: View {
                 } header: {Label("Favourite", systemImage: "star")
                     .font(.system(size: 20))
                     .foregroundColor(.selection)
+                    .shadow(radius: 1, y: 1)
                     .frame(maxWidth: .infinity).padding(5)
                     .background(Color(UIColor.systemGray6))
                 }// footer: {Divider()}
+                
                 Section {
-                    Text("nil")
+                    ForEach(
+                        typefontList.sorted(by: {$0.key < $1.key}), id: \.key
+                    ) { fontDisplayName, fontName in
+                        HStack {
+                            Spacer()
+                            Button(fontDisplayName) {
+                                selectedFont = fontName
+                                presentationMode.wrappedValue.dismiss()
+                            }
+                            .font(.custom(fontName, size: 20))
+                            .foregroundColor(.primary)
+                            .padding(.vertical, 8)
+                            Spacer()
+                        }
+//                        .contextMenu {
+//                            Button {
+//                                if favouriteFonts == nil {
+//                                    favouriteFonts = []
+//                                }
+//                                guard favouriteFonts!.firstIndex(of: name) == nil else {return}
+//                                favouriteFonts!.append(name)
+//                                UserDefaults.standard.set(favouriteFonts!, forKey: "_FAV_FONTS")
+//                            } label: {
+//                                Label("Favourite", systemImage: "star.fill")
+//                            }
+//                        }
+                    }
                 } header: {Label("Featured", systemImage: "heart")
                     .font(.system(size: 20))
                     .foregroundColor(.selection)
+                    .shadow(radius: 1, y: 1)
                     .frame(maxWidth: .infinity).padding(5)
                     .background(Color(UIColor.systemGray6))
                 }// footer: {Divider()}
+                
                 ForEach(UIFont.familyNames) {fname in
                     Section {
                         ForEach(UIFont.fontNames(forFamilyName: fname)) {name in
-                            Button(name) {
-                                selectedFont = name
-                                presentationMode.wrappedValue.dismiss()
+                            HStack {
+                                Spacer()
+                                Button(name) {
+                                    selectedFont = name
+                                    presentationMode.wrappedValue.dismiss()
+                                }
+                                .font(.custom(name, size: 20))
+                                .foregroundColor(.primary)
+                                .padding(.vertical, 8)
+                                Spacer()
                             }
-                            .font(.custom(name, size: 20))
-                            .foregroundColor(.primary)
-                            .padding(8)
                             .contextMenu {
                                 Button {
                                     if favouriteFonts == nil {
@@ -114,6 +148,7 @@ struct FontPickerList: View {
                     } header: {
                         Text(fname).font(.system(size: 20))
                             .foregroundColor(.selection)
+                            .shadow(radius: 1, y: 1)
                             .frame(maxWidth: .infinity).padding(5)
                             .background(Color(UIColor.systemGray6))
                     }// footer: {Divider()}

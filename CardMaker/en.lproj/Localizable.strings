@@ -13,3 +13,5 @@
 "_TAP_TO_EDIT"="Tap to edit";
 
 "_COUNT_MORE_THAN_26"="You have >= 26 entries this month.";
+
+"_Custom_font_instr" = "To apply other fonts, you need to install them system-wide.";

@@ -131,6 +131,6 @@ struct EditorView: View {
 
 struct EditorView_Previews: PreviewProvider {
     static var previews: some View {
-        EditorView(dateInt: 20220621, previewImg: .constant(nil), editing: .title)
+        EditorView(dateInt: 20220621, previewImg: .constant(nil), editing: .image)
     }
 }

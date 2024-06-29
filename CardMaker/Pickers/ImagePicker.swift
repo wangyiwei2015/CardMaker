@@ -52,6 +52,7 @@ struct WrappedImagePicker: UIViewControllerRepresentable {
 }
 
 class ImagePickerCoordinator: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+    @AppStorage("_IMG_QUALITY") var importedImgQuality: Double = 1.0
     @Binding var img: UIImage
     var designDate: Int
     var cardDate: Int
@@ -64,10 +65,18 @@ class ImagePickerCoordinator: NSObject, UINavigationControllerDelegate, UIImageP
 
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let chosenImg = (info[.editedImage] as? UIImage) ?? (info[.originalImage] as! UIImage)
+        
+        //TODO: resize: no bigger than 500 * 750 ?
+        
         img = chosenImg
         //let path = "\(NSHomeDirectory())/Documents/\(designDate)/\(cardDate)_source.jpg"
         //try! FileManager.default.createDirectory(atPath: "\(NSHomeDirectory())/Documents/\(designDate)/", withIntermediateDirectories: true)
-        try! chosenImg.jpegData(compressionQuality: 1)!.write(to: URL(fileURLWithPath: "\(NSHomeDirectory())/tmp/\(designDate)_\(cardDate).jpg"), options: .atomic)
+        try! chosenImg.jpegData(compressionQuality: importedImgQuality)!
+            .write(
+                to: URL(
+                    fileURLWithPath: "\(NSHomeDirectory())/tmp/\(designDate)_\(cardDate).jpg"
+                ), options: .atomic
+            )
         picker.dismiss(animated: true)
     }
 
