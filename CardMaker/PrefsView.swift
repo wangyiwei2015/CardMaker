@@ -104,6 +104,7 @@ struct PrefsView: View {
                         Text("IN MEMORY OF")
                         Image("riqianlogo").resizable()
                             .scaledToFit().frame(height: 24)
+                            .clipShape(Circle())
                         Text("RI-QIAN")
                         // https://www.ifanr.com/app/764929
                         // ID: 1140397151
@@ -186,6 +187,6 @@ struct PrefsView: View {
 
 struct PrefsView_Previews: PreviewProvider {
     static var previews: some View {
-        PrefsView(showsAppearancePrefs: true)
+        PrefsView()
     }
 }
