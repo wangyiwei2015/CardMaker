@@ -40,6 +40,7 @@ struct CardPreview: View {
             cardDataList.append(dateSelection)
         }
         dateSelection = 0
+        preLoadArtwork = UIImage()
         imgSaved = false
     }
     
@@ -163,6 +164,7 @@ struct CardPreview: View {
                 previewImg = nil
                 try? FileManager.default.removeItem(atPath: "\(NSHomeDirectory())/Documents/\(dateSelection)/")
                 dateSelection = 0
+                preLoadArtwork = UIImage()
             }
         } message: {
             Text("_CARD_DEL_ALERT")
