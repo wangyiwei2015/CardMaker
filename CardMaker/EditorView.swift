@@ -28,7 +28,8 @@ struct EditorView: View {
     let p_img_yoffset: [CGFloat] = [-125, 0, -125, 0]
     @State var s_img: Int = 0
     let imgShadow: [CGFloat] = [0, 4, 10, 16]
-    @State var artworkImg: UIImage = UIImage(named: "img_placeholder")!
+    //@State var artworkImg: UIImage// = UIImage(named: "img_placeholder")!
+    @Binding var artworkImg: UIImage
     
     @State var show_year_label: Bool = false
     @State var p_year_label: Int = 0 // bottom, top (if shown)
@@ -90,12 +91,12 @@ struct EditorView: View {
         } message: {
             Text("Exit without saving?")
         }
-        .onAppear {
+//        .onAppear {
 //            if let savedImg = UIImage(contentsOfFile: "\(NSHomeDirectory())/Documents/\(dateInt)/\(dateInt)_source.jpg") {
 //                artworkImg = savedImg
 //            }
-            print(NSHomeDirectory())
-        }
+//            print(NSHomeDirectory())
+//        }
     }
     
     @ViewBuilder var topBar: some View {
@@ -131,6 +132,6 @@ struct EditorView: View {
 
 struct EditorView_Previews: PreviewProvider {
     static var previews: some View {
-        EditorView(dateInt: 20220621, previewImg: .constant(nil), editing: .image)
+        EditorView(dateInt: 20220621, previewImg: .constant(nil), editing: .image, artworkImg: .constant(UIImage(named: "img_placeholder")!))
     }
 }

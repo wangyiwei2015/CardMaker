@@ -18,6 +18,7 @@ struct ContentView: View {
     
     @State var preview: UIImage? = nil
     @State var selectedArtwork: CardDesign? = nil
+    @State var preLoadImage: UIImage = UIImage()
     
     @Environment(\.colorScheme) var colorScheme
     
@@ -41,12 +42,14 @@ struct ContentView: View {
             }.blur(radius: (dateSelection > 0) || showsPrefs ? 6 : 0)
             CardPreview(
                 dateSelection: $dateSelection, cardDataList: $cardDataList,
-                previewImg: $preview, artworkDesign: $selectedArtwork
+                previewImg: $preview, artworkDesign: $selectedArtwork,
+                preLoadArtwork: $preLoadImage
             )
         }
         .onChange(of: dateSelection) { _ in
             preview = CardData.shared.loadPreviews(dateSelection).first
             selectedArtwork = CardData.shared.loadData(dateSelection).first
+            preLoadImage = UIImage(contentsOfFile: "\(NSHomeDirectory())/Documents/\(dateSelection)/\(dateSelection)_source.jpg") ?? UIImage(named: "img_placeholder")!
         }
         .fullScreenCover(isPresented: $showsPrefs) {
             PrefsView()

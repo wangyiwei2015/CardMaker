@@ -121,8 +121,10 @@ class CardData: NSObject {
         _ = FileManager.default.createFile(atPath: imgFile, contents: output.jpegData(compressionQuality: 1)!)
         
         let sourcePath = "\(NSHomeDirectory())/Documents/\(designDate)/\(designDate)_source.jpg"
-        try? FileManager.default.removeItem(atPath: sourcePath)
-        try? FileManager.default.moveItem(atPath: "\(NSHomeDirectory())/tmp/\(designDate)_\(designDate).jpg", toPath: sourcePath)
+        if FileManager.default.fileExists(atPath: "\(NSHomeDirectory())/tmp/\(designDate)_\(designDate).jpg") {
+            try? FileManager.default.removeItem(atPath: sourcePath)
+            try! FileManager.default.moveItem(atPath: "\(NSHomeDirectory())/tmp/\(designDate)_\(designDate).jpg", toPath: sourcePath)
+        }
         
         var cfgText = work.title.count < 1 ? " " : work.title
         cfgText.append("\ntitleSizeId=\(work.titleSizeId)")

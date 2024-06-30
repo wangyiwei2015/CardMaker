@@ -21,6 +21,8 @@ struct CardPreview: View {
     @State var sharingOutput: Bool = false
     @State var imgSaved: Bool = false
     
+    @Binding var preLoadArtwork: UIImage
+    
     @Environment(\.colorScheme) var colorScheme
     
     let haptic = UIImpactFeedbackGenerator(style: .light)
@@ -39,9 +41,6 @@ struct CardPreview: View {
         }
         dateSelection = 0
         imgSaved = false
-        #if(DEBUG)
-        print(NSHomeDirectory())
-        #endif
     }
     
     var body: some View {
@@ -144,7 +143,7 @@ struct CardPreview: View {
                 feelWorld: (artworkDesign ?? .empty).feelWorld,
                 p_img_pos: (artworkDesign ?? .empty).imgStyle,
                 s_img: (artworkDesign ?? .empty).imgStyle,
-                artworkImg: UIImage(contentsOfFile: "\(NSHomeDirectory())/Documents/\(dateSelection)/\(dateSelection)_source.jpg") ?? UIImage(named: "img_placeholder")!,
+                artworkImg: $preLoadArtwork,
                 show_year_label: (artworkDesign ?? .empty).showYear,
                 p_year_label: (artworkDesign ?? .empty).yearBottom ? 0 : 1,
                 titleContent: (artworkDesign ?? .empty).title,
@@ -182,7 +181,7 @@ struct CardPreview: View {
 
 struct CardPreview_Previews: PreviewProvider {
     static var previews: some View {
-        CardPreview(dateSelection: .constant(20220621), cardDataList: .constant([20220621]), previewImg: .constant(nil), artworkDesign: .constant(nil))
+        CardPreview(dateSelection: .constant(20220621), cardDataList: .constant([20220621]), previewImg: .constant(nil), artworkDesign: .constant(nil), preLoadArtwork: .constant(UIImage(named: "img_placeholder")!))
     }
 }
 
